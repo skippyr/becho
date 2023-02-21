@@ -87,6 +87,12 @@ becho -f red "foo"
 If you use an invalid color, it will not apply anything.
 
 
+## Testing
+
+After installing it, what about using the example scripts that
+are at `scripts/examples`? You can analyze them and execute
+to test this software in different environments.
+
 ## License
 
 This project is under the MIT license.
