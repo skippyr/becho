@@ -16,15 +16,9 @@ log_status() {
       color="yellow"
       ;;
   esac
-
   local -r action=$(echo $1 | cut -f 2 -d " ")
   local -r remaining=$(echo $1 | sed "s/${status} ${action} //")
-
-  if [[ -n ${action} ]]; then
-    becho "[$(becho -bf ${color} ${status})] ${action} $(becho -b "${remaining}")"
-  else
-    becho "${action} $(becho -b "${remaining}")"
-  fi
+  becho "[$(becho -bf ${color} ${status})] ${action} $(becho -b "${remaining}")"
 }
 
 get_random_small_interval() {
@@ -35,6 +29,7 @@ main() {
   becho "Initializing $(becho -b "operating system") ..."
   sleep 3
   messages=(
+    "OK Initializing operating system ..."
     "OK Detecting hardware ..."
     "OK Checking for drivers ..."
     "OK Initializing system services ..."
