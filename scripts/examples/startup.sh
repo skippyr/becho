@@ -20,11 +20,7 @@ log_status() {
   local -r action=$(echo $1 | cut -f 2 -d " ")
   local -r remaining=$(echo $1 | sed "s/${status} ${action} //")
 
-  if [[ -n ${action} ]]; then
-    becho "[$(becho -bf ${color} ${status})] ${action} $(becho -b "${remaining}")"
-  else
-    becho "${action} $(becho -b "${remaining}")"
-  fi
+  becho "[$(becho -bf ${color} ${status})] ${action} $(becho -b "${remaining}")"
 }
 
 get_random_small_interval() {
