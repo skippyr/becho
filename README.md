@@ -45,47 +45,15 @@ the UNIX `echo` command by providing more useful flags to:
 
     To build and run the sofware.
 
-## Usage
+## Usage Instructions
 
 
-### Bold
-
-Use the optional flag `-b` or `--bold` to specify that you want bold text.
-As an example:
+You can find instructions about this software by using its
+man page file located at `manuals/becho.man`:
 
 ```bash
-becho -b "foo"
+man manuals/becho.man
 ```
-
-
-### Foreground Color
-
-Use the optional flag `-f` or `--foreground-color` with a color name to specify
-the foreground color of the text. Available colors are:
-  + `black`
-  + `dark_red`
-  + `red`
-  + `dark_green`
-  + `green`
-  + `dark_yellow`
-  + `yellow`
-  + `dark_blue`
-  + `blue`
-  + `dark_magenta`
-  + `magenta`
-  + `dark_cyan`
-  + `cyan`
-  + `white`
-  + `normal` (default)
-
-As an example, try:
-
-```bash
-becho -f red "foo"
-```
-
-If you use an invalid color, it will not apply anything.
-
 
 ## Testing
 

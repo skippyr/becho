@@ -1,0 +1,52 @@
+.TH BECHO
+
+.SH NAME
+becho - A replacement for echo.
+
+.SH SYNOPSIS
+.B becho
+[\fIOPTIONS\fR]
+[\fITEXT\fR]
+
+.SH DESCRIPTION
+Prints text to the standart output with styles, prefix, suffix and formatting.
+
+.SH OPTIONS
+.TP
+\fB-h\fR, \fB--help\fR
+Shows a short help instructions.
+.TP
+\fB-b\fR, \fB--bold\fR
+Uses bold text.
+.TP
+\fB-f\fR, \fB--foreground-color\fR=\fICOLOR\fR
+Changes the foreground color. Available colors are the ones listed in the
+COLORS section.
+
+.SH COLORS
+These are the available colors you can uses for color flags:
+
+  + black
+  + dark_red
+  + red
+  + dark_green
+  + green
+  + dark_yellow
+  + yellow
+  + dark_blue
+  + blue
+  + dark_magenta
+  + magenta
+  + dark_cyan
+  + cyan
+  + white
+  + normal (default)
+
+.SH AUTHOR
+Sherman Rofeman <skippyr.development@gmail.com>
+
+Official homepage: https://github.com/skippyr/becho.
+
+.SH COPYRIGHT
+Copyright © Sherman Rofeman, 2023. MIT License.
+
