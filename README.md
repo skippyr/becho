@@ -48,6 +48,16 @@ the UNIX `echo` command by providing more useful flags to:
 ## Usage
 
 
+### Bold
+
+Use the optional flag `-b` or `--bold` to specify that you want bold text.
+As an example:
+
+```bash
+becho -b "foo"
+```
+
+
 ### Foreground Color
 
 Use the optional flag `-f` or `--foreground-color` with a color name to specify

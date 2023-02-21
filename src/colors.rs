@@ -1,10 +1,19 @@
 use crossterm::style::Stylize;
 
 pub trait Colors {
+    fn bold(&self, is_bold_text: bool) -> String;
     fn color_foreground(&self, foreground_color: &str) -> String;
 }
 
 impl Colors for String {
+    fn bold(&self, is_bold: bool) -> String {
+        if is_bold {
+            self.clone().bold().to_string()
+        } else {
+            self.clone()
+        }
+    }
+
     fn color_foreground(&self, foreground_color: &str) -> String {
         match foreground_color {
             "black" => {
@@ -50,7 +59,7 @@ impl Colors for String {
                 self.clone().white().to_string()
             }
             _ => {
-                self.to_string()
+                self.clone()
             }
         }
     }
