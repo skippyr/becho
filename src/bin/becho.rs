@@ -1,7 +1,7 @@
 use clap::Parser;
 use becho::{
     Arguments,
-    colors::Colors,
+    styles::Styles,
 };
 
 fn main() {

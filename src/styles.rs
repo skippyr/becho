@@ -1,11 +1,11 @@
 use crossterm::style::Stylize;
 
-pub trait Colors {
+pub trait Styles {
     fn bold(&self, is_bold_text: bool) -> String;
     fn color_foreground(&self, foreground_color: &str) -> String;
 }
 
-impl Colors for String {
+impl Styles for String {
     fn bold(&self, is_bold: bool) -> String {
         if is_bold {
             self.clone().bold().to_string()

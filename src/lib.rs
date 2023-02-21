@@ -1,6 +1,6 @@
 use clap::Parser;
 
-pub mod colors;
+pub mod styles;
 
 #[derive(Debug, Parser)]
 pub struct Arguments {
