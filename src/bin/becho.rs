@@ -9,5 +9,5 @@ fn main() {
     let result: String = arguments.text
         .bold(arguments.is_bold)
         .color_foreground(&arguments.foreground_color);
-    eprintln!("{}", result);
+    println!("{}", result);
 }
