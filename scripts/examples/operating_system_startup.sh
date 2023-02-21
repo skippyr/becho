@@ -29,7 +29,6 @@ main() {
   becho "Initializing $(becho -b "operating system") ..."
   sleep 3
   messages=(
-    "OK Initializing operating system ..."
     "OK Detecting hardware ..."
     "OK Checking for drivers ..."
     "OK Initializing system services ..."
