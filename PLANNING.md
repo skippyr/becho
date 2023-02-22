@@ -420,7 +420,8 @@ When interpreting those special sequences:
     change how much spacing characters `becho` will use for a `tab`. The best
     solution in this case is to use spaces to ensure the desired width.
   + if `becho` finds another special sequence other than these two, it will
-    remove it to avoiding creating issues, like placing a color.
+    remove it to avoiding creating issues, like changing a color, moving the
+    terminal cursor, removing the last character, etc.
 
 If `becho` is not interpreting those sequences, it will consider each of them
 as part of the word they are closed to or as separate words if they are stand
@@ -455,3 +456,182 @@ Alignments other than `left` will only be visible if a spacing will be left
 in the right side of the line when `becho` wraps your text. This means that
 defining an alignment for the text while using the flag `--wrap-by-character` is
 redudant as `becho` will not have space to make that alignment visible.
+
+
+## Trimming
+
+Trimming must be used to allow `becho` to receive fragments of text that
+wraps along lines of codes.
+
+
+## Comparison
+
+In this section, it will be compared how a shell script is written currently
+and how it will can be made easy using `becho`.
+
+Let's assume that you creating an installation script and you want your
+operation to be divided in two task: the confirmation of the installation and
+the installation of packages.
+
+Using the current shell script command, it would be:
+
+```bash
+#!/usr/bin/env bash
+
+red_and_bold() {
+  local -r text=$1
+  echo -e "\x1b[1;31m${text}\x1b[0m"
+}
+
+green_and_bold() {
+  local -r text=$1
+  echo -e "\x1b[1;32m${text}\x1b[0m"
+}
+
+yellow_and_bold() {
+  local -r text=$1
+  echo -e "\x1b[1;33m${text}\x1b[0m"
+}
+
+abort() {
+  local -r exit_code=$1
+  red_and_bold "Procedure aborted. Nothing has changed."
+  exit ${exit_code}
+}
+
+confirm() {
+  local -r message=$1
+  read -p "${message}" confirm
+  local -r confirm=$(echo ${confirm} | tr [:upper:] [:lower:] | xargs)
+  case ${confirm} in
+    y)
+      ;;
+    *)
+      abort 1
+      ;;
+  esac
+}
+
+title() {
+  local -r title=$(echo "$1" | tr [:lower:] [:upper:])
+  red_and_bold "${title}"
+}
+
+folded() {
+  local -r text=$1
+  echo "${text}" | fmt
+}
+
+confirm_installation() {
+  title "Confirm"
+  folded "  This script will try to install a system in your disk. This can \
+lead to loss of data, make sure you make a backup before running it."
+  confirm "  Do you confirm the installation? [y/N] "
+}
+
+is_installed() {
+  local -r package=$1
+  pacman -Qi ${package} 2>/dev/null
+}
+
+install_packages() {
+  title "Installation Of Packages"
+  local -r packages=(
+    base
+    linux
+    linux-firmware
+    firefox
+    figlet
+  )
+  for package in ${packages[@]}; do
+    if [[ $(is_installed ${package}) ]]; then
+      echo "  [$(green_and_bold OK)] Package $(yellow_and_bold ${package}) is \
+installed. Skipping..."
+    else
+      echo "  [$(red_and_bold FAILED)] Package $(yellow_and_bold ${package}) \
+is missing. Installing..."
+    fi
+  done
+}
+
+main() {
+  confirm_installation
+  install_packages
+}
+
+main
+
+```
+
+Using becho, it would be:
+
+``` bash
+#!/usr/bin/env bash
+
+abort() {
+  local -r exit_code=$1
+  becho -bf red "Procedure aborted. Nothing has changed."
+  exit ${exit_code}
+}
+
+confirm() {
+  local -r message=$1
+  read -p "${message}" confirm
+  local -r confirm=$(becho -c lowercase ${message})
+  case ${confirm} in
+    y)
+      ;;
+    *)
+      abort 1
+      ;;
+  esac
+}
+
+title() {
+  local -r title=$1
+  becho -bf red -c uppercase "${title}"
+}
+
+confirm_installation() {
+  title "Confirm"
+  becho -l "  " "This script will try to install a system in your disk. This can
+  lead to loss of data, make sure you make a backup before running it."
+  confirm -l "  " "Do you confirm the installation? [y/N] "
+}
+
+is_installed() {
+  local -r package=$1
+  pacman -Qi ${package} 2>/dev/null
+}
+
+install_packages() {
+  title "Installation Of Packages"
+  local -r packages=(
+    base
+    linux
+    linux-firmware
+    firefox
+    figlet
+  )
+  for package in ${packages[@]}; do
+    if [[ $(is_installed ${package}) ]]; then
+      becho -l "  " "[$(becho -bf green OK)] Package
+      $(becho -bf yellow ${package}) is installed. Skipping..."
+    else
+      becho -l "  " "[$(becho -bf red FAILED)] Package
+      $(becho -bf yellow ${package}) is missing. Installing..."
+    fi
+  done
+}
+
+main() {
+  confirm_installation
+  install_packages
+}
+
+main
+```
+
+The script becomes a bit smaller and more legible and maintainable.
+Both scripts can be found in the `scripts/examples` folder for further
+testing.
