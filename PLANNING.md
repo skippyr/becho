@@ -45,7 +45,7 @@ When receiving from a pipeline, `becho` will consider it as just one fragment,
 instead of considered each of the received words as a fragment.
 
 
-### What is the expected output?
+## What is the expected output?
 
 After receiving the fragments of text as argument and creating the one block
 of text it will handle, `becho` will treat that text according with the defined
@@ -180,7 +180,7 @@ can used to indent a text and place a symbol by its side.
 
 By default, the value of those flags are an empty string.
 
-## Prefix And Suffix
+### Prefix And Suffix
 
 Similar to the indentations flags, there will the flags `--prefix` and
 `--suffix` to define a prefix string and sufix string, respectively.
@@ -281,8 +281,49 @@ would use:
 becho --prefix "$(becho --foreground-color red "*") " "${message}"
 ```
 
+As it will be discussed in a next section, you will be able to define
+a width for your text to break. When using a prefix/sufix, `becho` does
+not wraps your text around it. For example, if you output a lorem ipsum
+text, you would behavior something like this:
 
-## Cases
+```
+>->> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+     Donec placerat convallis ornare. Curabitur in tincidunt risus,
+     a sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis,
+     dapibus in turpis. In dignissim ex eget libero malesuada consectetur.
+```
+
+This behavior can be changed by using the `--wrap-around` flag. Using
+it in the same example would output:
+
+```
+>->> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Donec placerat convallis ornare. Curabitur in tincidunt risus,
+a sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis,
+dapibus in turpis. In dignissim ex eget libero malesuada consectetur.
+```
+
+Note that, now, the text wraps around the prefix. Same behavior happens if
+you have suffix.
+
+As a matter of curiosity, an output can have both a prefix and suffix and both
+in same or different alignments:
+
+```bash
+becho --prefix ">->>" --alignment-suffix bottom --suffix "<-<<" "hello" "world"
+```
+
+would output
+
+```
+>->> hello
+     world <-<<
+```
+
+You can not have a more than one prefix or suffix even in different alignments.
+
+
+### Cases
 
 
 `becho` can be used to handle the case of your text. Different from `tr`,
@@ -296,12 +337,12 @@ be changed to:
   + `kebab_case`.
   + `pascal_case`.
 
-## Width
+### Width
 
 
 The width property is the most important one, and will allow you to fold
 your text in a desired width.
 
 
-## Alignments
+### Alignments
 
