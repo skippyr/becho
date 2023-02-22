@@ -136,8 +136,8 @@ You can use:
 + the flag `-r` or `--right-indentation`, to do the same, but for the end of
   every line instead.
 
-Those flags can be used to indent the text or put a symbol in the start of every
-line.
+Those flags can be used to indent the text or put a symbol in the start/end of
+every line.
 
 As an example, consider a file `foo.txt` that contains the following
 text inside of it:
@@ -343,7 +343,59 @@ value, but can be changed to:
 
 
 The width property is the most important one, and will allow you to fold
-your text in a desired width.
+your text in a desired width. In this section you will also see the
+composition of the output containing all the elements mentioned previously.
+
+That composition is as following:
+
++ Using an abstract format:
+  ```
+  left_indentation prefix text suffix right_indentation
+  ```
++ Using a concrete example using all the elements defined with a lorem ipsum
+  text:
+  ```
+  >> >->> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <-<< <<
+  >>      Donec placerat convallis ornare. Curabitur in tincidunt       <<
+  >>      risus, a sodales nibh. Aenean nulla orci, consectetur         <<
+  >>      vitae posuere mattis, dapibus in turpis. In dignissim ex      <<
+  >>      eget libero malesuada consectetur.                            <<
+  ```
+  If `--wrap-around` is used, that output would be:
+  ```
+  >> >->> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <-<< <<
+  >> Donec placerat convallis ornare. Curabitur in tincidunt risus, a   <<
+  >> sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis, <<
+  >> dapibus in turpis. In dignissim ex eget libero malesuada           <<
+  >> onsectetur.                                                        <<
+  ```
+
+As you can tell, the sum of the characters present in each of those elements
+for each line must be equals or less than the width defined to be used and
+`becho` must ensure it, otherwise it will throw an error explaining a
+good width for the elements.
+
+`becho` by default wraps your text considering each word's length, which
+allow people to read the text without problems. But, if you want, you
+can use the flag `--wrap-by-character` to make it consider characters instead
+of words, which would make the words break wrong but fit without leaving
+trailing spaces:
+
+
+```
+>> >->> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <-<< <<
+>>      Donec placerat convallis ornare. Curabitur in tincidunt       <<
+>>      risus, a sodales nibh. Aenean nulla orci, consectetur vi      <<
+>>      tae posuere mattis, dapibus in turpis. In dignissim ex e      <<
+>>      get libero malesuada consectetur.                             <<
+```
+
+Using one of the previous examples, now using wrapping by character, note
+that the words `vitae` and `eget` wrong wraps along the end of theirs lines, but
+it makes the text fit perfectly in that size.
+
+When not considering characters, the minimum width for the text is the same
+as the longest word it has.
 
 
 ### Alignments
