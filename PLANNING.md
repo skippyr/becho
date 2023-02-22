@@ -13,8 +13,13 @@ interesting interface which would make your project unmaintainable really
 quickly, and if you have to mantain a lot of projects including scripts, it can
 be hard to replan your functions to make different types of interface.
 
-`becho` is a terminal utility designed to help you treat, format and print a
-text by only using flags.
+`becho` is a terminal utility designed to help you trim, treat, format and
+print a text by only using flags. It can be versatile enough to:
+  + color text.
+  + create bullet list.
+  + indent text.
+  + fix text's case.
+  + remove trimming spacing.
 
 
 ## How it should receive input?
@@ -44,6 +49,49 @@ cat foo.txt | becho
 When receiving from a pipe line, `becho` will consider it as just one fragment,
 instead of considered each of the received words as a fragment.
 
+By default, `becho` can remove indentation spacing:
+
+Previously you would call a command like `echo` like:
+
+```bash
+echo "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+Donec placerat convallis ornare. Curabitur in tincidunt risus, \
+a sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis, \
+dapibus in turpis. In dignissim ex eget libero malesuada consectetur."
+```
+
+With `becho`, you can reorganize your code and keep the same indentation level
+as you were:
+
+```bash
+becho "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+       Donec placerat convallis ornare. Curabitur in tincidunt risus,
+       a sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis,
+       dapibus in turpis. In dignissim ex eget libero malesuada consectetur."
+```
+
+What about this one? This also works:
+
+```bash
+becho "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Donec placerat convallis ornare. Curabitur in tincidunt risus,
+a sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis,
+dapibus in turpis. In dignissim ex eget libero malesuada consectetur."
+```
+
+And this one too:
+
+```bash
+becho "
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Donec placerat convallis ornare. Curabitur in tincidunt risus,
+  a sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis,
+  dapibus in turpis. In dignissim ex eget libero malesuada consectetur.
+"
+```
+
+`becho` should remove indentation characters that uses spaces and tabs and extra
+newlines in the start and end of the text.
 
 ## What is the expected output?
 
@@ -65,22 +113,16 @@ When creating its output, `becho` will consider the following properties:
 All those properties can be changed by using specific flags, which will be
 mentioned later in this document.
 
-By saying it, `becho` can be versatile enough to:
-  + color text.
-  + create bullet list.
-  + indent text.
-  + fix text's case.
-
 
 ## What are the options flag it can accept?
 
 
 ### Escape Sequences
 
-By default, `becho` will interpret escape sequences, so characters like `\n`
-or `\t` would affect its output. This behavior can be disabled by using the
-flag `--no-escape`. Using it, the previous characters would be printed instead
-of interpreted.
+By default, `becho` will not interpret escape sequences, so characters like `\n`
+or `\t` will be printed instead of interpreted. This behavior can be disabled by
+using the flag `--escape`. Using it, the previous characters would be interpreted
+instead of printed.
 
 
 ### Bold
@@ -410,7 +452,7 @@ in that space, considering if that line uses a prefix/suffix, it will throw an
 error and show you a good spacing.
 
 What about special sequences like `\n` and `\t`? As describe in the start of
-this document, `becho` will interpret them instead of printing them, how it
+this document, `becho` can interpret them if the flag `--escape` is used, how it
 will handle the line break and the spacing of a tab character?
 
 When interpreting those special sequences:
@@ -419,9 +461,7 @@ When interpreting those special sequences:
   + if `becho` find a `tab`, it will substitute it by 2 spaces. You can not
     change how much spacing characters `becho` will use for a `tab`. The best
     solution in this case is to use spaces to ensure the desired width.
-  + if `becho` finds another special sequence other than these two, it will
-    remove it to avoiding creating issues, like changing a color, moving the
-    terminal cursor, removing the last character, etc.
+  + others characters will be printed normally.
 
 If `becho` is not interpreting those sequences, it will consider each of them
 as part of the word they are closed to or as separate words if they are stand
@@ -460,178 +500,13 @@ redudant as `becho` will not have space to make that alignment visible.
 
 ## Trimming
 
-Trimming must be used to allow `becho` to receive fragments of text that
-wraps along lines of codes.
+By default, `becho` will only remove spaces that you left when indent the
+text in your code. Spaces inside of the text itself will be preserved but can
+be removed with flags:
+  + `--trim-left` - removes extra spacing in the start of the text.
+  + `--trim-right` - removes extra spacing in the end of the text.
+  + `--trim-middle` - removes extra spacing in the middle of the text.
+  + `--trim-all` - same as using all the previous flags together: removes all
+    the extra spaces from the text.
 
-
-## Comparison
-
-In this section, it will be compared how a shell script is written currently
-and how it will can be made easy using `becho`.
-
-Let's assume that you creating an installation script and you want your
-operation to be divided in two task: the confirmation of the installation and
-the installation of packages.
-
-Using the current shell script command, it would be:
-
-```bash
-#!/usr/bin/env bash
-
-red_and_bold() {
-  local -r text=$1
-  echo -e "\x1b[1;31m${text}\x1b[0m"
-}
-
-green_and_bold() {
-  local -r text=$1
-  echo -e "\x1b[1;32m${text}\x1b[0m"
-}
-
-yellow_and_bold() {
-  local -r text=$1
-  echo -e "\x1b[1;33m${text}\x1b[0m"
-}
-
-abort() {
-  local -r exit_code=$1
-  red_and_bold "Procedure aborted. Nothing has changed."
-  exit ${exit_code}
-}
-
-confirm() {
-  local -r message=$1
-  read -p "${message}" confirm
-  local -r confirm=$(echo ${confirm} | tr [:upper:] [:lower:] | xargs)
-  case ${confirm} in
-    y)
-      ;;
-    *)
-      abort 1
-      ;;
-  esac
-}
-
-title() {
-  local -r title=$(echo "$1" | tr [:lower:] [:upper:])
-  red_and_bold "${title}"
-}
-
-folded() {
-  local -r text=$1
-  echo "${text}" | fmt
-}
-
-confirm_installation() {
-  title "Confirm"
-  folded "  This script will try to install a system in your disk. This can \
-lead to loss of data, make sure you make a backup before running it."
-  confirm "  Do you confirm the installation? [y/N] "
-}
-
-is_installed() {
-  local -r package=$1
-  pacman -Qi ${package} 2>/dev/null
-}
-
-install_packages() {
-  title "Installation Of Packages"
-  local -r packages=(
-    base
-    linux
-    linux-firmware
-    firefox
-    figlet
-  )
-  for package in ${packages[@]}; do
-    if [[ $(is_installed ${package}) ]]; then
-      echo "  [$(green_and_bold OK)] Package $(yellow_and_bold ${package}) is \
-installed. Skipping..."
-    else
-      echo "  [$(red_and_bold FAILED)] Package $(yellow_and_bold ${package}) \
-is missing. Installing..."
-    fi
-  done
-}
-
-main() {
-  confirm_installation
-  install_packages
-}
-
-main
-
-```
-
-Using becho, it would be:
-
-``` bash
-#!/usr/bin/env bash
-
-abort() {
-  local -r exit_code=$1
-  becho -bf red "Procedure aborted. Nothing has changed."
-  exit ${exit_code}
-}
-
-confirm() {
-  local -r message=$1
-  read -p "${message}" confirm
-  local -r confirm=$(becho -c lowercase ${message})
-  case ${confirm} in
-    y)
-      ;;
-    *)
-      abort 1
-      ;;
-  esac
-}
-
-title() {
-  local -r title=$1
-  becho -bf red -c uppercase "${title}"
-}
-
-confirm_installation() {
-  title "Confirm"
-  becho -l "  " "This script will try to install a system in your disk. This can
-  lead to loss of data, make sure you make a backup before running it."
-  confirm -l "  " "Do you confirm the installation? [y/N] "
-}
-
-is_installed() {
-  local -r package=$1
-  pacman -Qi ${package} 2>/dev/null
-}
-
-install_packages() {
-  title "Installation Of Packages"
-  local -r packages=(
-    base
-    linux
-    linux-firmware
-    firefox
-    figlet
-  )
-  for package in ${packages[@]}; do
-    if [[ $(is_installed ${package}) ]]; then
-      becho -l "  " "[$(becho -bf green OK)] Package
-      $(becho -bf yellow ${package}) is installed. Skipping..."
-    else
-      becho -l "  " "[$(becho -bf red FAILED)] Package
-      $(becho -bf yellow ${package}) is missing. Installing..."
-    fi
-  done
-}
-
-main() {
-  confirm_installation
-  install_packages
-}
-
-main
-```
-
-The script becomes a bit smaller and more legible and maintainable.
-Both scripts can be found in the `scripts/examples` folder for further
-testing.
+Spaces and tabs are considered as spacing and will be removed by those flags.
