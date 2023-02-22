@@ -9,7 +9,7 @@ have to create an interface to use with it.
 
 Commands like `echo`, `fmt` and `fold` would be used, but they would require
 complex pipelines, treatments and weird escape sequences to make some
-interesting interface which would make your project unmaintainable realy
+interesting interface which would make your project unmaintainable really
 quickly, and if you have to mantain a lot of projects including scripts, it can
 be hard to replan your functions to make different types of interface.
 
@@ -409,6 +409,41 @@ Considering all these scenarios, if `becho` detects that your text can not fit
 in that space, considering if that line uses a prefix/suffix, it will throw an
 error and show you a good spacing.
 
+What about special sequences like `\n` and `\t`? As describe in the start of
+this document, `becho` will interpret them instead of printing them, how it
+will handle the line break and the spacing of a tab character?
+
+When interpreting those special sequences:
+  + if `becho` finds a `line break`, it will break the line in that point an
+    will start analyzing the next one inserted.
+  + if `becho` find a `tab`, it will substitute it by 2 spaces. You can not
+    change how much spacing characters `becho` will use for a `tab`. The best
+    solution in this case is to use spaces to ensure the desired width.
+  + if `becho` finds another special sequence other than these two, it will
+    remove it to avoiding creating issues, like placing a color.
+
+If `becho` is not interpreting those sequences, it will consider each of them
+as part of the word they are closed to or as separate words if they are stand
+alone.
+
+For example:
+If `becho` is considering special sequences, when it receive:
+
+```
+Hello,\n\x1b[1;31mworld\x1b[0m\t.
+```
+
+It will transform it to:
+
+```
+Hello,
+world  .
+```
+
+If it its not interpreting special sequences, it will consider that same text
+as the words: `Hello,` and `\n\x1b[1;31mworld\x1b[0m\t.`.
+
+
 ### Alignments
 
 You can define the alignment that `becho` will use for each line of your text.
@@ -419,5 +454,4 @@ values are: `center` and `right`.
 Alignments other than `left` will only be visible if a spacing will be left
 in the right side of the line when `becho` wraps your text. This means that
 defining an alignment for the text while using the flag `--wrap-by-character` is
-redudant as `becho` will not have space to make that center in relation to its
-sides.
+redudant as `becho` will not have space to make that alignment visible.
