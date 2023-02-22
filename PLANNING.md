@@ -130,11 +130,14 @@ By default, those flags have the value `normal`.
 
 ### Left And Right Indentation
 
-The flag `--left-indentation` can be used to defined a string that will
-be placed in the start of every line of the text. A similar flag,
-`--right-indentation`, will do the same, but for the end of every line
-instead. Those flags can be used to indent the text or put a symbol in the
-start of every line.
+You can use:
++ the flag `-l` or `--left-indentation` to defined a string that will
+  be used in the start of every line of the text.
++ the flag `-r` or `--right-indentation`, to do the same, but for the end of
+  every line instead.
+
+Those flags can be used to indent the text or put a symbol in the start of every
+line.
 
 As an example, consider a file `foo.txt` that contains the following
 text inside of it:
@@ -148,10 +151,10 @@ barbar bar barbar
 By using `cat`, that content can be piped to `becho`:
 
 ```bash
-cat foo.txt | becho --left-indentation "  "
+cat foo.txt | becho -l "  "
 ```
 
-This time, the flag `--left-indentation` was defined, so it will output:
+This time, the flag `-l` was defined, so it will output:
 
 ```
   barbar bar barbar
@@ -160,23 +163,22 @@ This time, the flag `--left-indentation` was defined, so it will output:
 ```
 
 Note that the string used was used at the start of each line. The same example
-can be done with the `--right-indentation` property, but to make it visible,
-it will be used a symbol this time. When running the command:
+can be done with the `-r` property, but to make it visible, it will be used a
+symbol this time. When running the command:
 
 ```bash
-cat foo.txt | becho --right-indentation="<<"
+cat foo.txt | becho -r " <<"
 ```
 
 It will output:
 
 ```
-barbar bar barbar<<
-barbar bar barbar<<
-barbar bar barbar<<
+barbar bar barbar <<
+barbar bar barbar <<
+barbar bar barbar <<
 ```
 
-Note that this time that symbol was used at the end of each line. Those flags
-can used to indent a text and place a symbol by its side.
+Note that this time that symbol was used at the end of each line.
 
 By default, the value of those flags are an empty string.
 
