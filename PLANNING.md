@@ -503,10 +503,22 @@ redudant as `becho` will not have space to make that alignment visible.
 By default, `becho` will only remove spaces that you left when indent the
 text in your code. Spaces inside of the text itself will be preserved but can
 be removed with flags:
-  + `--trim-left` - removes extra spacing in the start of the text.
-  + `--trim-right` - removes extra spacing in the end of the text.
+  + `--trim-start` - removes extra spacing in the start of the text.
+  + `--trim-end` - removes extra spacing in the end of the text.
   + `--trim-middle` - removes extra spacing in the middle of the text.
   + `--trim-all` - same as using all the previous flags together: removes all
     the extra spaces from the text.
 
 Spaces and tabs are considered as spacing and will be removed by those flags.
+
+
+## Repetitions
+
+You can use the flag `--repeat` to specify how many time you want your output
+to be printed. By default, its value is 1.
+
+
+## Line Breaks
+
+By default, `becho` will print new line character in the end of the output.
+That can be removed by using the flag `--no-end-line-break`.
