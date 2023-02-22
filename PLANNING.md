@@ -182,19 +182,20 @@ By default, the value of those flags are an empty string.
 
 ### Prefix And Suffix
 
-Similar to the indentations flags, there will the flags `--prefix` and
-`--suffix` to define a prefix string and sufix string, respectively.
+Similar to the indentations flags, there will:
+  + the flag `-p` or `--prefix` to define a prefix string.
+  + the flag `-s` or `--suffix` to define a sufix string.
 
 The difference between prefix/suffix and indentation is that a prefix is only
 show once, instead of being repeated in every line.
 
-Please, conside the same file `foo.txt` from the last section:
+Please, consider the same file `foo.txt` from the last section:
 
 ```bash
-cat foo.txt | becho --prefix ">->> "
+cat foo.txt | becho -p ">->> "
 ```
 
-This time, the `--prefix` flag was used. It would output:
+This time, the `-p` flag was used. It would output:
 
 ```
 >->> barbar bar barbar
@@ -203,13 +204,13 @@ This time, the `--prefix` flag was used. It would output:
 ```
 
 Similarly, the same behavior be reproduced in the right side by using the
-flag `--suffix`:
+flag `-s`:
 
 ```bash
-cat foo.txt | becho --suffix " <-<<"
+cat foo.txt | becho -s " <-<<"
 ```
 
-would output:
+It would output:
 
 ```
 barbar bar barbar <<-<
@@ -225,7 +226,7 @@ Those alignment flags use the `top` value by default, but can use `center` and
 `bottom` too. Follow examples:
 
 ```bash
-cat foo.txt | becho --alignment-suffix center --suffix " <-<<"
+cat foo.txt | becho --alignment-suffix center -s " <-<<"
 ```
 
 would output:
@@ -239,7 +240,7 @@ barbar bar barbar
 and:
 
 ```bash
-cat foo.txt | becho --alignment-suffix bottom --suffix " <-<<"
+cat foo.txt | becho --alignment-suffix bottom -s " <-<<"
 ```
 
 would output:
@@ -260,7 +261,7 @@ messages=(
   "Do yoga"
 )
 for message in "${message[@]}"; do
-  becho --prefix "* " "${message}"
+  becho -p "* " "${message}"
 done
 ```
 
@@ -278,13 +279,13 @@ for example, to colorize the previous example's prefix in red, you
 would use:
 
 ```bash
-becho --prefix "$(becho --foreground-color red "*") " "${message}"
+becho -p "$(becho -f red "*") " "${message}"
 ```
 
 As it will be discussed in a next section, you will be able to define
 a width for your text to break. When using a prefix/sufix, `becho` does
 not wraps your text around it. For example, if you output a lorem ipsum
-text, you would behavior something like this:
+text with the prefix ">->>", it would behavior something like this:
 
 ```
 >->> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -303,14 +304,14 @@ a sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis,
 dapibus in turpis. In dignissim ex eget libero malesuada consectetur.
 ```
 
-Note that, now, the text wraps around the prefix. Same behavior happens if
-you have suffix.
+Note that, now, the text wraps around the prefix. Same behavior happens in
+the right side if you use a suffix.
 
 As a matter of curiosity, an output can have both a prefix and suffix and both
 in same or different alignments:
 
 ```bash
-becho --prefix ">->>" --alignment-suffix bottom --suffix "<-<<" "hello" "world"
+becho -p ">->>" --alignment-suffix bottom -s "<-<<" "hello" "world"
 ```
 
 would output
@@ -326,10 +327,9 @@ You can not have a more than one prefix or suffix even in different alignments.
 ### Cases
 
 
-`becho` can be used to handle the case of your text. Different from `tr`,
-`becho` can handle more types of cases. The case of your text can be defined
-by using the flag `--case`. It uses `normal` as its default value, but can
-be changed to:
+`becho` can be used to handle the case of your text. The case of your text can
+be defined by using the flag `-c` or `--case`. It uses `normal` as its default
+value, but can be changed to:
   + `upper_case`.
   + `lower_case`.
   + `snake_case`.
