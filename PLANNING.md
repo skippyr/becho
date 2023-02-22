@@ -41,7 +41,7 @@ which allows you to pipe them from another command, for example, `cat`:
 cat foo.txt | becho
 ```
 
-When receiving from a pipeline, `becho` will consider it as just one fragment,
+When receiving from a pipe line, `becho` will consider it as just one fragment,
 instead of considered each of the received words as a fragment.
 
 
@@ -53,11 +53,11 @@ properties and, in the end, will output it back to the standart output.
 
 When creating its output, `becho` will consider the following properties:
   + a left indentation.
-  + a left prefix.
+  + a prefix.
   + your text.
-  + a right prefix.
+  + a suffix.
   + a right indentation.
-  + a width for all the previous elements to fit.
+  + a width.
   + a foreground color.
   + a background color.
   + the text's case.
@@ -114,12 +114,12 @@ The color value can be:
     + `normal`, this is the default value and refers to your terminal's default
       colors.
   + The value of a color from the 8-bits color pallete, which is a value from
-    0 to 256. As curiosity, values from 0 to 16 corresponds to the 4-bits color
+    0 to 255. As curiosity, values from 0 to 15 corresponds to the 4-bits color
     pallete, and can be used instead of using one of the names mentioned in the
     previous item.
 
-Invalid colors values are color values that does not correspond to the scope
-of both color palletes listed previously. When an invalid color is used,
+Invalid color values are color values that does not correspond to the scope
+of both color palletes mentioned previously. When an invalid color is used,
 `becho` will just not modify that color.
 
 Terminals that does not supports some of the color palletes will not be
@@ -133,7 +133,7 @@ By default, those flags have the value `normal`.
 You can use:
 + the flag `-l` or `--left-indentation` to defined a string that will
   be used in the start of every line of the text.
-+ the flag `-r` or `--right-indentation`, to do the same, but for the end of
++ the flag `-r` or `--right-indentation` to do the same, but for the end of
   every line instead.
 
 Those flags can be used to indent the text or put a symbol in the start/end of
@@ -162,9 +162,9 @@ This time, the flag `-l` was defined, so it will output:
   barbar bar barbar
 ```
 
-Note that the string used was used at the start of each line. The same example
-can be done with the `-r` property, but to make it visible, it will be used a
-symbol this time. When running the command:
+Note that the string defined was used at the start of each line. The same
+example can be done with the `-r` property, but to make it visible, it will be
+used a symbol this time. When running the command:
 
 ```bash
 cat foo.txt | becho -r " <<"
@@ -325,6 +325,8 @@ would output
 
 You can not have a more than one prefix or suffix even in different alignments.
 
+If you use an escape sequence in a prefix/suffix, it will be printed instead
+of be interpreted.
 
 ### Cases
 
@@ -348,55 +350,74 @@ composition of the output containing all the elements mentioned previously.
 
 That composition is as following:
 
-+ Using an abstract format:
-  ```
-  left_indentation prefix text suffix right_indentation
-  ```
-+ Using a concrete example using all the elements defined with a lorem ipsum
-  text:
-  ```
-  >> >->> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <-<< <<
-  >>      Donec placerat convallis ornare. Curabitur in tincidunt       <<
-  >>      risus, a sodales nibh. Aenean nulla orci, consectetur         <<
-  >>      vitae posuere mattis, dapibus in turpis. In dignissim ex      <<
-  >>      eget libero malesuada consectetur.                            <<
-  ```
-  If `--wrap-around` is used, that output would be:
-  ```
-  >> >->> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <-<< <<
-  >> Donec placerat convallis ornare. Curabitur in tincidunt risus, a   <<
-  >> sodales nibh. Aenean nulla orci, consectetur vitae posuere mattis, <<
-  >> dapibus in turpis. In dignissim ex eget libero malesuada           <<
-  >> onsectetur.                                                        <<
-  ```
+```
+left_indentation prefix text suffix right_indentation
+```
+> Composition with all the elements (case 1).
 
-As you can tell, the sum of the characters present in each of those elements
-for each line must be equals or less than the width defined to be used and
-`becho` must ensure it, otherwise it will throw an error explaining a
-good width for the elements.
+By default, `becho` will consider that the sum of those element characters must
+be equivalent to its defined width property or less than it. If it exceeds the
+width property, a line break will be inserted. The default width value is
+80, but can be changed with the flag `--width`.
 
-`becho` by default wraps your text considering each word's length, which
-allow people to read the text without problems. But, if you want, you
-can use the flag `--wrap-by-character` to make it consider characters instead
-of words, which would make the words break wrong but fit without leaving
-trailing spaces:
-
+Considering the default behavior of prefix/suffix, `becho` will consider
+the size of prefix/suffix in all of the lines, however if the `--wrap-around`
+flag was used, `becho` will have to analyze each line and provide a different
+behavior for each one: now, it must consider prefix and/or suffix only when
+it will be actually used, as a space will not be placed to substitute them in
+each line. This implies that these other forms of composition can be found:
 
 ```
->> >->> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <-<< <<
->>      Donec placerat convallis ornare. Curabitur in tincidunt       <<
->>      risus, a sodales nibh. Aenean nulla orci, consectetur vi      <<
->>      tae posuere mattis, dapibus in turpis. In dignissim ex e      <<
->>      get libero malesuada consectetur.                             <<
+left_indentation prefix text right_indentation
+```
+> Composition with just prefix (case 2).
+
+```
+left_indentation text suffix right_indentation
+```
+> Composition with just suffix (case 3).
+
+```
+left_indentation text right_indentation
+```
+> Composition without prefix/suffix (case 4).
+
+As an example, take a look in the following lorem ipsum text that is using
+the `--wrap-around` with some width defined:
+
+```
+(case 2) >> >->> Lorem ipsum dolor sit amet, consectetur adipiscing      <<
+(case 4) >> elit. Donec placerat convallis ornare. Curabitur in          <<
+(case 4) >> tincidunt risus, a sodales nibh. Aenean nulla orci,          <<
+(case 3) >> consectetur vitae posuere mattis, dapibus in turpis. In <-<< <<
+(case 4) >> dignissim ex eget libero malesuada onsectetur.               <<
 ```
 
-Using one of the previous examples, now using wrapping by character, note
-that the words `vitae` and `eget` wrong wraps along the end of theirs lines, but
-it makes the text fit perfectly in that size.
+In this example, the cases 2, 3 and 4 could be found, which ilustrates some
+of the different compositions `becho` will have to maintain.
 
-When not considering characters, the minimum width for the text is the same
-as the longest word it has.
+Now, considering only the text part of one of those lines, `becho` will try
+to fit your text inside it. By default, `becho` tries to fit a whole word in
+a line so it can be readable. This behavior implies that the minimum size of
+a text per line must be the size of the longest word present in that line.
 
+This behavior can be disabled by using the flag `--wrap-by-character` which
+will make `becho` try to fit characters inside of a line. Using it, the minimum
+size for the text is only one character.
+
+Considering all these scenarios, if `becho` detects that your text can not fit
+in that space, considering if that line uses a prefix/suffix, it will throw an
+error and show you a good spacing.
 
 ### Alignments
 
+You can define the alignment that `becho` will use for each line of your text.
+This alignment only affects the text element of its output. By default, `becho`
+uses `left` alignment, but it can be changed using the flag `--alignment`. Other
+values are: `center` and `right`.
+
+Alignments other than `left` will only be visible if a spacing will be left
+in the right side of the line when `becho` wraps your text. This means that
+defining an alignment for the text while using the flag `--wrap-by-character` is
+redudant as `becho` will not have space to make that center in relation to its
+sides.
