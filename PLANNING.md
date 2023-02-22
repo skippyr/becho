@@ -13,8 +13,8 @@ interesting interface which would make your project unmaintainable realy
 quickly, and if you have to mantain a lot of projects including scripts, it can
 be hard to replan your functions to make different types of interface.
 
-`becho` is a terminal utility designed to help you print and format a piece of
-text with just a few flags.
+`becho` is a terminal utility designed to help you treat, format and print a
+text by only using flags.
 
 
 ## How it should receive input?
@@ -60,6 +60,7 @@ When creating its output, `becho` will consider the following properties:
   + a width for all the previous elements to fit.
   + a foreground color.
   + a background color.
+  + the text's case.
 
 All those properties can be changed by using specific flags, which will be
 mentioned later in this document.
@@ -68,6 +69,7 @@ By saying it, `becho` can be versatile enough to:
   + color text.
   + create bullet list.
   + indent text.
+  + fix text's case.
 
 
 ## What are the options flag it can accept?
@@ -180,20 +182,19 @@ By default, the value of those flags are an empty string.
 
 ## Prefix And Suffix
 
-Similar to the indentations flags, there will the flags `--left-prefix` and
-`--right-prefix` to define a prefix string and right prefix string,
-respectively.
+Similar to the indentations flags, there will the flags `--prefix` and
+`--suffix` to define a prefix string and sufix string, respectively.
 
-The difference between them is that a prefix is only show once, instead of
-being repeated in every line.
+The difference between prefix/suffix and indentation is that a prefix is only
+show once, instead of being repeated in every line.
 
 Please, conside the same file `foo.txt` from the last section:
 
 ```bash
-cat foo.txt | becho --left-prefix=">->> "
+cat foo.txt | becho --prefix ">->> "
 ```
 
-This time, the `--left-prefix` flag was used. It would output:
+This time, the `--prefix` flag was used. It would output:
 
 ```
 >->> barbar bar barbar
@@ -202,10 +203,10 @@ This time, the `--left-prefix` flag was used. It would output:
 ```
 
 Similarly, the same behavior be reproduced in the right side by using the
-flag `--right-prefix`:
+flag `--suffix`:
 
 ```bash
-cat foo.txt | becho --right-prefix=" <-<<"
+cat foo.txt | becho --suffix " <-<<"
 ```
 
 would output:
@@ -216,12 +217,38 @@ barbar bar barbar
 barbar bar barbar
 ```
 
-Each prefix can be aligned vertically using another flag. To adjust the
-alignment of the `--left-prefix` use the flag `--alignment-left-prefix`, and
-for the `--right-prefix`, `--alignment-right-prefix`.
+Each prefix can be aligned vertically using another flag:
+  + to adjust the alignment of the prefix, use the flag `--alignment-prefix`.
+  + to adjust the alignment of the suffix, use the flag `--alignment-suffix`.
 
 Those alignment flags use the `top` value by default, but can use `center` and
-`bottom` too.
+`bottom` too. Follow examples:
+
+```bash
+cat foo.txt | becho --alignment-suffix center --suffix " <-<<"
+```
+
+would output:
+
+```
+barbar bar barbar
+barbar bar barbar <<-<
+barbar bar barbar
+```
+
+and:
+
+```bash
+cat foo.txt | becho --alignment-suffix bottom --suffix " <-<<"
+```
+
+would output:
+
+```
+barbar bar barbar
+barbar bar barbar
+barbar bar barbar <-<<
+```
 
 The prefix flags are really useful when creating bullet list in the terminal,
 for example:
@@ -233,27 +260,41 @@ messages=(
   "Do yoga"
 )
 for message in "${message[@]}"; do
-  becho --left-prefix="* " "${message}"
+  becho --prefix "* " "${message}"
 done
 ```
 
 Would output:
 
 ```
-Visit my friend.
-Go shopping
-Do yoga
+* Visit my friend.
+* Go shopping
+* Do yoga
 ```
 
 The color of a prefix can not be changed by a flag, but you can use the own
 `becho` to color that prefix and use its output as the prefix. If you want,
-for example, to colorize the previous example's left prefix in red, you
+for example, to colorize the previous example's prefix in red, you
 would use:
 
 ```bash
-becho --left-prefix="$(becho --foreground-color red "*") " "${message}"
+becho --prefix "$(becho --foreground-color red "*") " "${message}"
 ```
 
+
+## Cases
+
+
+`becho` can be used to handle the case of your text. Different from `tr`,
+`becho` can handle more types of cases. The case of your text can be defined
+by using the flag `--case`. It uses `normal` as its default value, but can
+be changed to:
+  + `upper_case`.
+  + `lower_case`.
+  + `snake_case`.
+  + `camel_case`.
+  + `kebab_case`.
+  + `pascal_case`.
 
 ## Width
 
