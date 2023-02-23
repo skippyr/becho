@@ -154,6 +154,16 @@ You can specify that you want the output to use bold text by using the flag
 You can specify that you want the output to use crossed out text by using the
 flag `-x` or `--crossed-out`.
 
+### Dimmed
+
+You can specify that you want the output to use dimmed color by using the
+flag `-d` or `--dim`.
+
+### Italic
+
+You can specify that you want the output to use italic text by using the
+flag `-i` or `--italic`.
+
 ### Foreground And Background Colors
 
 You can specify a color value to be used in the foreground by using the flag

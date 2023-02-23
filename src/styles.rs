@@ -1,10 +1,12 @@
 use crossterm::style::Stylize;
 
 pub trait Styles {
-    fn bold(&self, is_bold_text: bool) -> String;
-    fn cross_out(&self, is_crossed_text: bool) -> String;
+    fn bold(&self, is_bold: bool) -> String;
+    fn cross_out(&self, is_crossed: bool) -> String;
+    fn italicize(&self, is_italic: bool) -> String;
     fn color_foreground(&self, foreground_color: &str) -> String;
     fn color_background(&self, background_color: &str) -> String;
+    fn dim(&self, is_dimmed: bool) -> String;
 }
 
 impl Styles for String {
@@ -19,6 +21,14 @@ impl Styles for String {
     fn cross_out(&self, is_crossed_text: bool) -> String {
         if is_crossed_text {
             self.clone().crossed_out().to_string()
+        } else {
+            self.clone()
+        }
+    }
+
+    fn italicize(&self, is_italic: bool) -> String {
+        if is_italic {
+            self.clone().italic().to_string()
         } else {
             self.clone()
         }
@@ -121,6 +131,14 @@ impl Styles for String {
             _ => {
                 self.clone()
             }
+        }
+    }
+
+    fn dim(&self, is_dimmed: bool) -> String {
+        if is_dimmed {
+            self.clone().dim().to_string()
+        } else {
+            self.clone()
         }
     }
 }

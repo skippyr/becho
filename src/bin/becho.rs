@@ -2,7 +2,7 @@ use clap::Parser;
 use becho::{
     Arguments,
     styles::Styles,
-    io::get_text_from_stdin
+    io::get_text_from_stdin,
 };
 
 fn main() {
@@ -16,7 +16,9 @@ fn main() {
     let output: String = text
         .bold(arguments.is_bold)
         .cross_out(arguments.is_crossed_out)
+        .italicize(arguments.is_italic)
         .color_foreground(&arguments.foreground_color)
-        .color_background(&arguments.background_color);
+        .color_background(&arguments.background_color)
+        .dim(arguments.is_dimmed);
     println!("{}", output);
 }
