@@ -2,6 +2,7 @@ use clap::Parser;
 use becho::{
     Arguments,
     styles::Styles,
+    treatments::Treatments,
     io::get_text_from_stdin,
 };
 
@@ -14,6 +15,7 @@ fn main() {
     };
 
     let output: String = text
+        .escape_spacing_sequences(arguments.is_to_escape)
         .bold(arguments.is_bold)
         .cross_out(arguments.is_crossed_out)
         .italicize(arguments.is_italic)

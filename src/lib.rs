@@ -2,9 +2,14 @@ use clap::Parser;
 
 pub mod styles;
 pub mod io;
+pub mod treatments;
 
 #[derive(Debug, Parser)]
 pub struct Arguments {
+    /// Escapes spacing sequences.
+    #[arg(short = 'e', long = "escape", action)]
+    pub is_to_escape: bool,
+
     /// Uses bold text.
     #[arg(
         short = 'b',
