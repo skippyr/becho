@@ -11,27 +11,15 @@ pub struct Arguments {
     pub is_to_escape: bool,
 
     /// Uses bold text.
-    #[arg(
-        short = 'b',
-        long = "bold",
-        action,
-    )]
+    #[arg(short = 'b', long = "bold", action)]
     pub is_bold: bool,
 
     /// Uses crossed out text.
-    #[arg(
-        short = 'x',
-        long = "crossed-out",
-        action,
-    )]
+    #[arg(short = 'x', long = "crossed-out", action)]
     pub is_crossed_out: bool,
 
     /// Uses italic text.
-    #[arg(
-        short = 'i',
-        long = "italic",
-        action,
-    )]
+    #[arg(short = 'i', long = "italic", action)]
     pub is_italic: bool,
 
     /// A color to be applied in the text.
@@ -60,6 +48,7 @@ pub struct Arguments {
 
     /// The separator used to concatenate text fragments.
     #[arg(
+        short = 't',
         long = "separator",
         default_value_t = String::new(),
     )]

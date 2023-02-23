@@ -119,13 +119,13 @@ mentioned later in this document.
 ### Separator
 
 You can change the separator `becho` uses when concatenating text fragments
-given as arguments by using the flag `--separator`. For example:
+given as arguments by using the flag `-t` or `--separator`. For example:
 
 ```
-becho --separator " | " hello world
+becho -t " | " hello world
 ```
 
-Would output:
+Will output:
 
 ```
 hello | world
@@ -138,10 +138,11 @@ By default, the separator is an empty string.
 
 ### Escape Sequences
 
-By default, `becho` will not interpret escape sequences, so characters like `\n`
-or `\t` will be printed instead of interpreted. This behavior can be disabled by
-using the flag `--escape`. Using it, the previous characters would be interpreted
-instead of printed.
+By default, `becho` will not interpret escape sequences. This behavior can be
+partially disabled by using the flag `--escape`. Using it, `becho` will
+interpret the characters `\n` and `\t`. Other sequences will not be interpreted.
+The sequence `\t` is interpreted as two spaces so it will not interfer when
+`becho` calculates width.
 
 
 ### Bold
@@ -482,39 +483,6 @@ size for the text is only one character.
 Considering all these scenarios, if `becho` detects that your text can not fit
 in that space, considering if that line uses a prefix/suffix, it will throw an
 error and show you a good spacing.
-
-What about special sequences like `\n` and `\t`? As describe in the start of
-this document, `becho` can interpret them if the flag `--escape` is used, how it
-will handle the line break and the spacing of a tab character?
-
-When interpreting those special sequences:
-  + if `becho` finds a `line break`, it will break the line in that point an
-    will start analyzing the next one inserted.
-  + if `becho` find a `tab`, it will substitute it by 2 spaces. You can not
-    change how much spacing characters `becho` will use for a `tab`. The best
-    solution in this case is to use spaces to ensure the desired width.
-  + others characters will be printed normally.
-
-If `becho` is not interpreting those sequences, it will consider each of them
-as part of the word they are closed to or as separate words if they are stand
-alone.
-
-For example:
-If `becho` is considering special sequences, when it receive:
-
-```
-Hello,\n\x1b[1;31mworld\x1b[0m\t.
-```
-
-It will transform it to:
-
-```
-Hello,
-world  .
-```
-
-If it its not interpreting special sequences, it will consider that same text
-as the words: `Hello,` and `\n\x1b[1;31mworld\x1b[0m\t.`.
 
 
 ### Alignments
