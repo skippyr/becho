@@ -6,7 +6,7 @@ pub mod treatments;
 
 #[derive(Debug, Parser)]
 pub struct Arguments {
-    /// Escapes spacing sequences.
+    /// Escapes new line and tab sequences.
     #[arg(short = 'e', long = "escape", action)]
     pub is_to_escape: bool,
 

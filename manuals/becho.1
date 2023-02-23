@@ -1,45 +1,58 @@
 .TH BECHO
 
 .SH NAME
+
 becho - An utility to treat, style, format and print texts.
 
 .SH SYNOPSIS
+
 .B becho
 [\fIOPTIONS\fR]
 [\fITEXT_FRAGMENTS\fR]...
 
 .SH DESCRIPTION
+
 Prints text to the standart output with styles, prefix, suffix and formatting.
 It can get the text it will handle by concatenating text fragments that were
 given as arguments or from the standart input.
 
 .SH OPTIONS
+
 .TP
 \fB-h\fR, \fB--help\fR
 Shows a short help instructions.
+
 .TP
 \fB-e\fR, \fB--escape\fR
-Escapes spacing sequences.
+Escapes new line and tab sequences. A tab sequence will be replace by two
+spaces.
+
 .TP
 \fB-b\fR, \fB--bold\fR
 Uses bold text.
+
 .TP
 \fB-x\fR, \fB--crossed-out\fR
 Uses crossed out text.
+
 .TP
 \fB-i\fR, \fB--italic\fR
 Uses italic text. It only works if your font has italic characters.
+
 .TP
 \fB-f\fR, \fB--foreground-color\fR=\fICOLOR\fR
 Changes the foreground color. Available colors are the ones listed in the
 COLORS section. By default, it uses "normal".
+
 .TP
 \fB-g\fR, \fB--background-color\fR=\fICOLOR\fR
 Changes the background color. Available colors are the ones listed in the
 COLORS section. By default, it uses "normal".
+
 .TP
 \fB-d\fR, \fB--dim\fR
 Uses dimmed color.
+
 .TP
 \fB--separator\fR=\fIseparator\fR
 Specifies the separator string to be used when concatenating the text fragments
