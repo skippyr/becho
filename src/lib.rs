@@ -1,6 +1,7 @@
 use clap::Parser;
 
 pub mod styles;
+pub mod io;
 
 #[derive(Debug, Parser)]
 pub struct Arguments {
@@ -11,5 +12,6 @@ pub struct Arguments {
     #[arg(short = 'f', long = "foreground-color", default_value_t = String::from("normal"))]
     pub foreground_color: String,
     /// The text to be handled.
+    #[arg(default_value_t = String::new())]
     pub text: String,
 }
