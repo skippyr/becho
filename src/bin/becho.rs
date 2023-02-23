@@ -8,7 +8,7 @@ use becho::{
 fn main() {
     let arguments: Arguments = Arguments::parse();
     let text: String = if arguments.text_fragments.len() > 0 {
-        arguments.text_fragments.concat()
+        arguments.text_fragments.join(&arguments.separator)
     } else {
         get_text_from_stdin()
     };

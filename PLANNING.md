@@ -31,8 +31,8 @@ becho "hello" "world"
 ```
 
 When dealing with multiple fragments, `becho` will consider them as just one
-block of text by concatenating them. The previous command would be read by
-`becho` as the text:
+block of text by concatenating them. By default, the previous command would be
+read by `becho` as the text:
 
 ```
 helloworld
@@ -115,6 +115,26 @@ mentioned later in this document.
 
 ## What are the options flag it can accept?
 
+
+### Separator
+
+You can change the separator `becho` uses when concatenating text fragments
+given as arguments by using the flag `--separator`. For example:
+
+```
+becho --separator " | " hello world
+```
+
+Would output:
+
+```
+hello | world
+```
+
+The separator will not affect texts comming from the standart input as they
+are considered as just one text.
+
+By default, the separator is an empty string.
 
 ### Escape Sequences
 

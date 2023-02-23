@@ -14,6 +14,9 @@ pub struct Arguments {
     /// A color to be applied in the background.
     #[arg(short = 'g', long = "background-color", default_value_t = String::from("normal"))]
     pub background_color: String,
+    /// The separator used to concatenate text fragments.
+    #[arg(long = "separator", default_value_t = String::new())]
+    pub separator: String,
     /// The text fragments to be handled.
     pub text_fragments: Vec<String>,
 }
