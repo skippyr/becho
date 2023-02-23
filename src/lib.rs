@@ -8,6 +8,9 @@ pub struct Arguments {
     /// Uses bold text.
     #[arg(short = 'b', long = "bold", action)]
     pub is_bold: bool,
+    /// Uses crossed out text.
+    #[arg(short = 'x', long = "crossed-out", action)]
+    pub is_crossed_out: bool,
     /// A color to be applied in the text.
     #[arg(short = 'f', long = "foreground-color", default_value_t = String::from("normal"))]
     pub foreground_color: String,

@@ -15,6 +15,7 @@ fn main() {
 
     let output: String = text
         .bold(arguments.is_bold)
+        .cross_out(arguments.is_crossed_out)
         .color_foreground(&arguments.foreground_color)
         .color_background(&arguments.background_color);
     println!("{}", output);

@@ -147,8 +147,12 @@ instead of printed.
 ### Bold
 
 You can specify that you want the output to use bold text by using the flag
-`--bold` or `-b`.
+`-b` or `--bold` or.
 
+### Crossed Out
+
+You can specify that you want the output to use crossed out text by using the
+flag `-x` or `--crossed-out`.
 
 ### Foreground And Background Colors
 

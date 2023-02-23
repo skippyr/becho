@@ -2,6 +2,7 @@ use crossterm::style::Stylize;
 
 pub trait Styles {
     fn bold(&self, is_bold_text: bool) -> String;
+    fn cross_out(&self, is_crossed_text: bool) -> String;
     fn color_foreground(&self, foreground_color: &str) -> String;
     fn color_background(&self, background_color: &str) -> String;
 }
@@ -10,6 +11,14 @@ impl Styles for String {
     fn bold(&self, is_bold: bool) -> String {
         if is_bold {
             self.clone().bold().to_string()
+        } else {
+            self.clone()
+        }
+    }
+
+    fn cross_out(&self, is_crossed_text: bool) -> String {
+        if is_crossed_text {
+            self.clone().crossed_out().to_string()
         } else {
             self.clone()
         }
