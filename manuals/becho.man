@@ -10,6 +10,7 @@ becho - A replacement for echo.
 
 .SH DESCRIPTION
 Prints text to the standart output with styles, prefix, suffix and formatting.
+It can get the text it can handle as an argument or from the standart input.
 
 .SH OPTIONS
 .TP

@@ -14,6 +14,7 @@ fn main() {
     
     let output: String = arguments.text
         .bold(arguments.is_bold)
-        .color_foreground(&arguments.foreground_color);
+        .color_foreground(&arguments.foreground_color)
+        .color_background(&arguments.background_color);
     println!("{}", output);
 }
