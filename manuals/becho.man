@@ -1,7 +1,7 @@
 .TH BECHO
 
 .SH NAME
-becho - A replacement for echo.
+becho - An utility to treat, trim, print and format texts.
 
 .SH SYNOPSIS
 .B becho
@@ -10,7 +10,8 @@ becho - A replacement for echo.
 
 .SH DESCRIPTION
 Prints text to the standart output with styles, prefix, suffix and formatting.
-It can get the text it can handle as an argument or from the standart input.
+It can get the text it will handle by concatenating text fragments that were
+given as arguments or from the standart input.
 
 .SH OPTIONS
 .TP
@@ -22,6 +23,10 @@ Uses bold text.
 .TP
 \fB-f\fR, \fB--foreground-color\fR=\fICOLOR\fR
 Changes the foreground color. Available colors are the ones listed in the
+COLORS section.
+.TP
+\fB-g\fR, \fB--background-color\fR=\fICOLOR\fR
+Changes the background color. Available colors are the ones listed in the
 COLORS section.
 
 .SH COLORS

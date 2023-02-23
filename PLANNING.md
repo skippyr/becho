@@ -31,12 +31,11 @@ becho "hello" "world"
 ```
 
 When dealing with multiple fragments, `becho` will consider them as just one
-block of text by concatenating them with a line break. The previous command
-would be read by `becho` as the text:
+block of text by concatenating them. The previous command would be read by
+`becho` as the text:
 
 ```
-hello
-world
+helloworld
 ```
 
 Alternatively, `becho` can get those fragments of text from a pipe line,
@@ -361,8 +360,7 @@ becho -p ">->>" --alignment-suffix bottom -s "<-<<" "hello" "world"
 would output
 
 ```
->->> hello
-     world <-<<
+>->> helloworld <-<<
 ```
 
 You can not have a more than one prefix or suffix even in different alignments.
