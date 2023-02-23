@@ -23,11 +23,16 @@ Uses bold text.
 .TP
 \fB-f\fR, \fB--foreground-color\fR=\fICOLOR\fR
 Changes the foreground color. Available colors are the ones listed in the
-COLORS section.
+COLORS section. By default, it uses "normal".
 .TP
 \fB-g\fR, \fB--background-color\fR=\fICOLOR\fR
 Changes the background color. Available colors are the ones listed in the
-COLORS section.
+COLORS section. By default, it uses "normal".
+.TP
+\fB--separator\fR=\fIseparator\fR
+Specifies the separator string to be used when concatenating the text fragments
+given as arguments. It does not affect text coming from the standart input. By
+default, it uses an empty string.
 
 .SH COLORS
 These are the available colors you can uses for color flags:
