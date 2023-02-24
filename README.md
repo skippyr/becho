@@ -5,6 +5,18 @@ into the standart output. It is my rethink of the `echo` command with more
 features.
 
 
+## Preview
+
+Here you can see screenshots of some real examples using `becho`.
+
+![](preview/preview_0.png)
+![](preview/preview_1.png)
+![](preview/preview_2.png)
+![](preview/preview_3.png)
+
+> The font used in the screenshots is
+[`Rec Mono Duotone` from `arrowtype`](https://github.com/arrowtype/recursive).
+
 ## Development
 
 This project still under development. However, some features have already been
@@ -15,7 +27,7 @@ added.
 
 ## Installation
 
-`becho` is written in Rust and for to be used, must be installed from source.
+`becho` is written in Rust, and, for to be used, must be installed from source.
 To do it, if you are using MacOS or Linux, follow these steps:
 
   + install [`rust`](https://www.rust-lang.org), `git` and `make`. If you
@@ -73,7 +85,7 @@ For example, using the command line arguments:
 becho hello world
 ```
 
-`becho` will interpret those arguments as the `helloworld`. By default,
+`becho` will interpret those arguments as the text `helloworld`. By default,
 `becho` will consider an empty string as the separator to be used when
 concatenating the arguments, but it can be changed by using the flag
 `-t` or `--separator`, so the command:
@@ -82,8 +94,8 @@ concatenating the arguments, but it can be changed by using the flag
 becho -t " | " hello world
 ```
 
-Now, that will be interpreted as the text `hello | world`. This feature
-is really useful to place a separator in the elements of an array.
+Now, will be interpreted as the text `hello | world`. This feature
+is really useful to place a separator in between the elements of an array.
 
 When receiving text from a pipe line, it will consider it as just one
 argument, so the separator flag will not affect it.
@@ -123,12 +135,21 @@ For example:
 becho -f red "foo"
 ```
 
+And:
+
+```bash
+becho -f 30 "bar"
+```
+
 You can use a dim variant of the color you chose by using the flag `-d` or
 `--dim`.
 
+You will only see colors if your terminal can support it. An example of a
+good terminal is [`kitty`](https://github.com/kovidgoyal/kitty).
+
 ### Cases
 
-`becho` can change the cases of your text for a lot of variants of cases by
+`becho` can change the cases of your text to a lot of variants of cases by
 using the flag `-c` or `--case`. For example:
 
 ```bash
@@ -140,6 +161,9 @@ becho -c snake "hello world"
 You can specify that you want the output to use bold text by using the
 flag `-b` or `--bold`.
 
+You will only be able to see bold characters if your font support it. An example
+of font with great support is the one used in the screenshots.
+
 ### Underline
 
 You can specify that you want the output to use underlined text by using the
@@ -150,7 +174,15 @@ flag `-u` or `--underline`.
 You can specify that you want the output to use italic text by using the
 flag `-i` or `--italic`.
 
+You will only be able to see italic characters if your font support it. An
+example of font with great support is the one used in the screenshots.
+
+### Crossed Out
+
+You can specify that you want the output to use crossed out text by using the
+flag `-x` or `--crossed-out`.
+
 ## More Information
 
-The instructions you saw in this document are just as examples, if want more
+The instructions you saw in this document are just examples, if want more
 details, please refer to the manual of `becho` after you install it.
