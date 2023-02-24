@@ -19,6 +19,7 @@ fn main() {
         .bold(arguments.is_bold)
         .cross_out(arguments.is_crossed_out)
         .italicize(arguments.is_italic)
+        .underline(arguments.is_underline)
         .color_foreground(&arguments.foreground_color)
         .color_background(&arguments.background_color)
         .dim(arguments.is_dimmed);

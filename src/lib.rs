@@ -14,6 +14,14 @@ pub struct Arguments {
     #[arg(short = 'b', long = "bold", action)]
     pub is_bold: bool,
 
+    /// Uses underlined text.
+    #[arg(
+        short = 'u',
+        long = "underline",
+        action,
+    )]
+    pub is_underline: bool,
+
     /// Uses crossed out text.
     #[arg(short = 'x', long = "crossed-out", action)]
     pub is_crossed_out: bool,

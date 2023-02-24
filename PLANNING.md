@@ -165,6 +165,12 @@ flag `-d` or `--dim`.
 You can specify that you want the output to use italic text by using the
 flag `-i` or `--italic`.
 
+### Underline
+
+You can specify a color value to be used as an underline by using the
+flag `-u` or `--underline`.
+
+
 ### Foreground And Background Colors
 
 You can specify a color value to be used in the foreground by using the flag

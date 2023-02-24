@@ -4,6 +4,7 @@ pub trait Styles {
     fn bold(&self, is_bold: bool) -> String;
     fn cross_out(&self, is_crossed: bool) -> String;
     fn italicize(&self, is_italic: bool) -> String;
+    fn underline(&self, is_underline: bool) -> String;
     fn color_foreground(&self, foreground_color: &str) -> String;
     fn color_background(&self, background_color: &str) -> String;
     fn dim(&self, is_dimmed: bool) -> String;
@@ -93,7 +94,7 @@ impl Styles for String {
                 self.clone().on_dark_red().to_string()
             }
             "red" => {
-                self.clone().clone().on_red().to_string()
+                self.clone().on_red().to_string()
             }
             "dark_green" => {
                 self.clone().on_dark_green().to_string()
@@ -131,6 +132,14 @@ impl Styles for String {
             _ => {
                 self.clone()
             }
+        }
+    }
+
+    fn underline(&self, is_underline: bool) -> String {
+        if is_underline {
+            self.clone().underlined().to_string()
+        } else {
+            self.clone()
         }
     }
 
