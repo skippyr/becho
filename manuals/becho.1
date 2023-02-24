@@ -58,10 +58,15 @@ COLORS section. By default, it uses "normal".
 Uses dimmed color.
 
 .TP
-\fB-t\fR, \fB--separator\fR=\fIseparator\fR
+\fB-t\fR, \fB--separator\fR=\fISEPARATOR\fR
 Specifies the separator string to be used when concatenating the text fragments
 given as arguments. It does not affect text coming from the standart input. By
 default, it uses an empty string.
+
+.TP
+\fB-c\fR, \fB--case\fR=\fICASE\fR
+Specifies the case the text will be treated to. Available cases are the ones
+listed in the CASES section. By default, it uses "normal".
 
 .SH COLORS
 These are the available colors from the 4-bits pallete you can use for color
@@ -81,11 +86,30 @@ flags:
   - dark_cyan
   - cyan
   - white
-  - normal (default)
+  - normal (default): maintains the default colors of the terminal.
 
 You can also use a value from the 8-bits pallete, that goes from 0 to 255. This
 pallete also includes the 4-bits pallete and can be used instead of using the
 name of the color.
+
+.SH CASES
+These are the available cases that can be used with the case flag:
+
+  - upper: all letters are in upper case.
+  - lower: all letter are in lower case.
+  - camel: with exception of the first word, that is all in lower case, all
+           initials are upper case and the rest of the words in lower case.
+           All spacing between words is removed.
+  - upper_camel: Same as camel, but the first word is not an exception.
+  - title: all initials are in upper case and the rest of the words in lower
+           case.
+  - snake: all letters are in lower case and separated by one underline.
+  - screaming_snake: same as snake case but all letter are in upper case.
+  - kebak: all letters are in lower case and separated by one dash.
+  - upper_kebab: same as kebab but all letters are in upper case.
+  - train: same as kebab but the initials are in upper case and the rest of the
+           words in lower case.
+  - normal (defaul): maintains the default case of the text.
 
 .SH AUTHOR
 Sherman Rofeman <skippyr.developer@gmail.com>

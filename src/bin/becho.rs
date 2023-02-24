@@ -16,6 +16,7 @@ fn main() {
 
     let output: String = text
         .escape_sequences(arguments.is_to_escape)
+        .treat_case(&arguments.case)
         .bold(arguments.is_bold)
         .cross_out(arguments.is_crossed_out)
         .italicize(arguments.is_italic)

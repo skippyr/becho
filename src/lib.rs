@@ -62,6 +62,14 @@ pub struct Arguments {
     )]
     pub separator: String,
 
+    /// The case the text will be treated to.
+    #[arg(
+        short = 'c',
+        long = "case",
+        default_value_t = String::from("normal"),
+    )]
+    pub case: String,
+
     /// The text fragments to be handled.
     pub text_fragments: Vec<String>,
 }
