@@ -1,5 +1,4 @@
-use crossterm::style::Stylize;
-
+use crossterm::style::{Color, Stylize};
 pub trait Styles {
     fn bold(&self, is_bold: bool) -> String;
     fn cross_out(&self, is_crossed: bool) -> String;
@@ -80,7 +79,12 @@ impl Styles for String {
                 self.clone().white().to_string()
             }
             _ => {
-                self.clone()
+                match foreground_color.parse::<u8>() {
+                    Ok(value) => {
+                        self.clone().with(Color::AnsiValue(value)).to_string()
+                    }
+                    Err(_) => { self.clone().to_string() }
+                }
             }
         }
     }
@@ -130,7 +134,12 @@ impl Styles for String {
                 self.clone().on_white().to_string()
             }
             _ => {
-                self.clone()
+                match background_color.parse::<u8>() {
+                    Ok(value) => {
+                        self.clone().on(Color::AnsiValue(value)).to_string()
+                    }
+                    Err(_) => { self.clone().to_string() }
+                }
             }
         }
     }
