@@ -3,6 +3,7 @@ use clap::Parser;
 pub mod styles;
 pub mod io;
 pub mod treatments;
+pub mod error;
 
 #[derive(Debug, Parser)]
 pub struct Arguments {

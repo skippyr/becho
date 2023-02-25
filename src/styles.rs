@@ -1,4 +1,5 @@
 use crossterm::style::{Color, Stylize};
+use crate::error::exit_process;
 pub trait Styles {
     fn bold(&self, is_bold: bool) -> String;
     fn cross_out(&self, is_crossed: bool) -> String;
@@ -78,12 +79,24 @@ impl Styles for String {
             "white" => {
                 self.clone().white().to_string()
             }
+            "normal" => {
+                self.clone()
+            }
             _ => {
                 match foreground_color.parse::<u8>() {
                     Ok(value) => {
                         self.clone().with(Color::AnsiValue(value)).to_string()
                     }
-                    Err(_) => { self.clone().to_string() }
+                    Err(_) => {
+                        exit_process(
+                            format!(
+                                "\"{}\" is not a valid foreground color.",
+                                foreground_color
+                            ),
+                            1,
+                        );
+                        self.clone()
+                    }
                 }
             }
         }
@@ -133,12 +146,24 @@ impl Styles for String {
             "white" => {
                 self.clone().on_white().to_string()
             }
+            "normal" => {
+                self.clone()
+            }
             _ => {
                 match background_color.parse::<u8>() {
                     Ok(value) => {
                         self.clone().on(Color::AnsiValue(value)).to_string()
                     }
-                    Err(_) => { self.clone().to_string() }
+                    Err(_) => {
+                        exit_process(
+                            format!(
+                                "\"{}\" is not a valid background color.",
+                                background_color
+                            ),
+                            1,
+                        );
+                        self.clone()
+                    }
                 }
             }
         }
