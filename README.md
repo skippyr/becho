@@ -25,6 +25,8 @@ implement and can be tested by you.
 I plan to continue adding more features, but those will be replaned before being
 added.
 
+Expect some changes until the end of this first stage of its development.
+
 ## Installation
 
 `becho` is written in Rust, and, for to be used, must be installed from source.
@@ -68,13 +70,12 @@ to build an image with `becho` already installed in this repository in the
 
 ## What it can do?
 
-`becho` can do basically what `echo` is capable with some features that you
-may find useful in other utilities like `tr` by just using flags.
+`becho` can make treat, style and print text into the standart output, similar
+to the `echo` command.
 
-It can accept a text to be handled by concatenating the command line arguments
-with a separator or from the standart input, through a pipe line. It will do its
-magic with the properties you will define with flags and output it back in the
-standart output.
+It can accept a text to be handled by concatenating the command line arguments.
+It will do its magic with the properties you will define with flags and output
+it into the standart output.
 
 
 ### Separator
@@ -85,10 +86,10 @@ For example, using the command line arguments:
 becho hello world
 ```
 
-`becho` will interpret those arguments as the text `helloworld`. By default,
-`becho` will consider an empty string as the separator to be used when
-concatenating the arguments, but it can be changed by using the flag
-`-t` or `--separator`, so the command:
+`becho` will interpret those arguments as the text `hello world`. By default,
+`becho` will consider a separator to be used when concatenating the arguments
+as one space, but it can be changed by using the flag `-t` or `--separator`, so
+the command:
 
 ```bash
 becho -t " | " hello world
@@ -97,21 +98,6 @@ becho -t " | " hello world
 Now, will be interpreted as the text `hello | world`. This feature
 is really useful to place a separator in between the elements of an array.
 
-When receiving text from a pipe line, it will consider it as just one
-argument, so the separator flag will not affect it.
-
-For example:
-
-```bash
-cat text.txt | becho
-```
-
-If you want to use a separator flag in this case, prefer using a subcommand
-instead:
-
-```bash
-becho -t " | " $(cat text.txt)
-```
 
 ### Escapes
 

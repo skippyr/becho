@@ -3,19 +3,12 @@ use becho::{
     Arguments,
     styles::Styles,
     treatments::Treatments,
-    io::{
-        get_text_from_stdin,
-        print_to_stdout,
-    },
+    io::print_to_stdout,
 };
 
 fn main() {
     let arguments: Arguments = Arguments::parse();
-    let text: String = if arguments.text_fragments.len() > 0 {
-        arguments.text_fragments.join(&arguments.separator)
-    } else {
-        get_text_from_stdin()
-    };
+    let text: String = arguments.text_fragments.join(&arguments.separator);
 
     let output: String = text
         .escape_sequences(arguments.is_to_escape)

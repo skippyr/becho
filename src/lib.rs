@@ -58,7 +58,7 @@ pub struct Arguments {
     #[arg(
         short = 't',
         long = "separator",
-        default_value_t = String::new(),
+        default_value_t = String::from(" "),
     )]
     pub separator: String,
 

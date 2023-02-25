@@ -25,6 +25,8 @@ The vertical alignment of prefix and suffix could be adjusted
 with the flags `--alignment-prefix` and `--alignment-suffix` respectively. Those flags would have the value `top` as default
 but could accept `center` and `bottom` as well.
 
+By default, prefix/suffix use a space in the left and right side of the text, affecting all the lines. If the desired action was just to affect the line they are at, use the flag `--wrap-around`.
+
 Prefix/suffix are useful to create bullet list.
 
 ## Width
@@ -36,13 +38,3 @@ the terminal.
 The width flag would throw an error if the text can not fit
 inside that width with all the elements already calculated for
 the output.
-
-## Repeat
-
-The flag `--repeat` can be used to define how many times the
-output would be shown. By default its value is 1.
-
-## No End Line Break
-
-By default, `becho` will output with a line break in the end
-of the line, the flag `-n` or `--no-end-new-line` would remove it.
