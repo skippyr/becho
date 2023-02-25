@@ -182,6 +182,18 @@ example of font with great support is the one used in the screenshots.
 You can specify that you want the output to use crossed out text by using the
 flag `-x` or `--crossed-out`.
 
+
+## No End Line Break
+
+By default, `becho` will output with a line break in the end
+of the text, the flag `-n` or `--no-end-new-line` removes it.
+
+## Repeat
+
+The flag `--repeat` can be used to define how many times the
+output will be shown. By default its value is 1.
+
+
 ## More Information
 
 The instructions you saw in this document are just examples, if want more
