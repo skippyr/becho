@@ -45,4 +45,4 @@ output would be shown. By default its value is 1.
 ## No End Line Break
 
 By default, `becho` will output with a line break in the end
-of the line, the flag `-n` or `--no-end-line-break` would remove it.
+of the line, the flag `-n` or `--no-end-new-line` would remove it.

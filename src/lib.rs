@@ -70,6 +70,14 @@ pub struct Arguments {
     )]
     pub case: String,
 
+    /// Do not use a new line character in the end of output.
+    #[arg(
+        short = 'n',
+        long = "no-end-new-line",
+        action,
+    )]
+    pub is_no_end_new_line: bool,
+
     /// The text fragments to be handled.
     pub text_fragments: Vec<String>,
 }

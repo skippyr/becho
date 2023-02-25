@@ -3,7 +3,10 @@ use becho::{
     Arguments,
     styles::Styles,
     treatments::Treatments,
-    io::get_text_from_stdin,
+    io::{
+        get_text_from_stdin,
+        print_to_stdout,
+    },
 };
 
 fn main() {
@@ -24,5 +27,5 @@ fn main() {
         .color_foreground(&arguments.foreground_color)
         .color_background(&arguments.background_color)
         .dim(arguments.is_dimmed);
-    println!("{}", output);
+    print_to_stdout(output, arguments.is_no_end_new_line);
 }
