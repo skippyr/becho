@@ -6,6 +6,7 @@ pub mod treatments;
 pub mod error;
 
 #[derive(Debug, Parser)]
+#[clap(version)]
 pub struct Arguments {
     /// Escapes new line and tab sequences.
     #[arg(short = 'e', long = "escape", action)]
@@ -81,6 +82,7 @@ pub struct Arguments {
 
     /// Defines the number of times the output will be repeated.
     #[arg(
+        short = 'R',
         long = "repeat",
         default_value_t = 1,
     )]

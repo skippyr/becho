@@ -174,7 +174,7 @@ of the text, the flag `-n` or `--no-end-new-line` removes it.
 
 ## Repeat
 
-The flag `--repeat` can be used to define how many times the
+The flag `-R` or `--repeat` can be used to define how many times the
 output will be shown. By default its value is 1.
 
 
