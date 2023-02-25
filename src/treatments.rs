@@ -1,4 +1,5 @@
 use convert_case::{Case, Casing};
+use crate::error::exit_process;
 
 pub trait Treatments {
     fn escape_sequences(&self, is_to_escape: bool) -> String;
@@ -55,7 +56,14 @@ impl Treatments for String {
             "invert" => {
                 self.clone().to_case(Case::Toggle)
             }
+            "normal" => {
+                self.clone()
+            }
             _ => {
+                exit_process(
+                    format!("\"{}\" is not a valid case.", case),
+                    1
+                );
                 self.clone()
             }
         }
