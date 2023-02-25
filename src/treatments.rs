@@ -37,7 +37,7 @@ impl Treatments for String {
             "snake" => {
                 self.clone().to_case(Case::Snake)
             }
-            "screaming_snake" => {
+            "upper_snake" => {
                 self.clone().to_case(Case::ScreamingSnake)
             }
             "kebab" => {
@@ -46,13 +46,13 @@ impl Treatments for String {
             "upper_kebab" => {
                 self.clone().to_case(Case::UpperKebab)
             }
-            "train" => {
+            "title_kebab" => {
                 self.clone().to_case(Case::Train)
             }
-            "alternating" => {
+            "alternate" => {
                 self.clone().to_case(Case::Alternating)
             }
-            "toggle" => {
+            "invert" => {
                 self.clone().to_case(Case::Toggle)
             }
             _ => {
