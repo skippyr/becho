@@ -100,8 +100,8 @@ is really useful to place a separator in between the elements of an array.
 
 By default, `becho` will not interpret escape sequences that are in the
 arguments of a command line. If you want, there is the flag `-e` or `--escape`
-that will make `becho` escapes new line (\n), tab (\t) and escape (\e or \x1b)
-characters.
+that will make `becho` escapes new line (\n), tab (\t) and escape (\e, \x1b and
+\033) characters.
 
 
 ### Colors
