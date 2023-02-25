@@ -12,10 +12,7 @@ Here you can see screenshots of some real examples using `becho`.
 ![](preview/preview_0.png)
 ![](preview/preview_1.png)
 ![](preview/preview_2.png)
-![](preview/preview_3.png)
 
-> The font used in the screenshots is
-[`Rec Mono Duotone` from `arrowtype`](https://github.com/arrowtype/recursive).
 
 ## Development
 
@@ -105,6 +102,7 @@ By default, `becho` will not interpret escape sequences that are in the
 arguments of a command line. If you want, there is the flag `-e` or `--escape`
 that will make `becho` escape new line and tab sequences. A tab character will
 be replaced by two spaces.
+
 
 ### Colors
 
