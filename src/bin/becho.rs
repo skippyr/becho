@@ -27,5 +27,9 @@ fn main() {
         .color_foreground(&arguments.foreground_color)
         .color_background(&arguments.background_color)
         .dim(arguments.is_dimmed);
-    print_to_stdout(output, arguments.is_no_end_new_line);
+    print_to_stdout(
+        output,
+        arguments.number_of_repetitions,
+        arguments.is_no_end_new_line
+    );
 }

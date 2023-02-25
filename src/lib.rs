@@ -78,6 +78,13 @@ pub struct Arguments {
     )]
     pub is_no_end_new_line: bool,
 
+    /// Defines the number of times the output will be repeated.
+    #[arg(
+        long = "repeat",
+        default_value_t = 1,
+    )]
+    pub number_of_repetitions: usize,
+
     /// The text fragments to be handled.
     pub text_fragments: Vec<String>,
 }
