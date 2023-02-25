@@ -11,8 +11,10 @@ impl Treatments for String {
         if is_to_escape {
             self
                 .clone()
-                .replace("\\n", "\n")
                 .replace("\\t", "  ")
+                .replace("\\n", "\n")
+                .replace("\\e", "\x1b")
+                .replace("\\x1b", "\x1b")
         } else {
             self.clone()
         }

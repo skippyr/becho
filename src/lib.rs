@@ -8,7 +8,7 @@ pub mod error;
 #[derive(Debug, Parser)]
 #[clap(version)]
 pub struct Arguments {
-    /// Escapes new line and tab sequences.
+    /// Escapes new line (\n), tab (\t) and escape (\e or \x1b) characters.
     #[arg(short = 'e', long = "escape", action)]
     pub is_to_escape: bool,
 
