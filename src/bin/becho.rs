@@ -10,6 +10,10 @@ fn main() {
     let arguments: Arguments = Arguments::parse();
     let text: String = arguments.text_fragments.join(&arguments.separator);
 
+    if arguments.is_verbose {
+        eprintln!("{:#?}", arguments);
+    }
+
     let output: String = text
         .escape_sequences(arguments.is_to_escape)
         .treat_case(&arguments.case)

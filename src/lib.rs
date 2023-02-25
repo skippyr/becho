@@ -88,6 +88,14 @@ pub struct Arguments {
     )]
     pub number_of_repetitions: usize,
 
+    /// Prints useful information for debugging into the standart error.
+    #[arg(
+        short = 'v',
+        long = "verbose",
+        action,
+    )]
+    pub is_verbose: bool,
+
     /// The text fragments to be handled.
     pub text_fragments: Vec<String>,
 }
