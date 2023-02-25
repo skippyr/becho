@@ -126,8 +126,8 @@ be replaced by two spaces.
 by using the flag `-f` or `--foreground-color` and `-g` or `--background-color`
 respectively:
 
-Those flags accept the name of a color from the 4-bits pallete or a value
-from the 8-bits pallete, which is a value from 0 to 255.
+Those flags accept the name of a color from the 4-bits palette or a value
+from the 8-bits palette, which is a value from 0 to 255.
 
 For example:
 
