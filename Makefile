@@ -5,11 +5,11 @@ manuals_directory=${prefix_directory}/share/man/man1
 
 install:
 	cargo build -r
-	sudo cp -f target/release/${name} ${binaries_directory}
-	sudo mkdir -p ${manuals_directory}
-	sudo cp -f manuals/${name}.1 ${manuals_directory}
+	cp -f target/release/${name} ${binaries_directory}
+	mkdir -p ${manuals_directory}
+	cp -f manuals/${name}.1 ${manuals_directory}
 
 uninstall:
-	sudo rm -f {${binaries_directory}/${name},${manuals_directory}/${name}.1}
+	rm -f {${binaries_directory}/${name},${manuals_directory}/${name}.1}
 
 .PHONY: install uninstall
