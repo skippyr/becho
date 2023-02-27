@@ -1,7 +1,7 @@
 # Becho
 
 `becho` is a terminal utility designed to help you treat, style and print text
-to the standart output. It is my rethink of the `echo` command with more
+to the standard output. It is my rethink of the `echo` command with more
 features.
 
 It should work in both Linux and MacOS.
