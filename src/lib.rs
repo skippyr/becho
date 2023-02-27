@@ -33,7 +33,7 @@ pub struct Arguments {
     #[arg(short = 'i', long = "italic", action)]
     pub is_italic: bool,
 
-    /// A color to be applied in the text.
+    /// Defines the foreground color.
     #[arg(
         short = 'f',
         long = "foreground-color",
@@ -41,7 +41,7 @@ pub struct Arguments {
     )]
     pub foreground_color: String,
 
-    /// A color to be applied in the background.
+    /// Defines the background color.
     #[arg(
         short = 'g',
         long = "background-color",
@@ -57,7 +57,8 @@ pub struct Arguments {
     )]
     pub is_dimmed: bool,
 
-    /// The separator used to concatenate text fragments.
+    /// Defines the separator string to be used when concatenating the text
+    /// fragments given as arguments.
     #[arg(
         short = 't',
         long = "separator",
@@ -65,7 +66,7 @@ pub struct Arguments {
     )]
     pub separator: String,
 
-    /// The case the text will be treated to.
+    /// Defines the case the text will be treated to.
     #[arg(
         short = 'c',
         long = "case",
@@ -89,7 +90,7 @@ pub struct Arguments {
     )]
     pub number_of_repetitions: usize,
 
-    /// Prints useful information for debugging into the standart error.
+    /// Prints useful information for debugging to the standard error.
     #[arg(
         short = 'v',
         long = "verbose",
