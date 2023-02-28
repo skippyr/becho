@@ -14,6 +14,8 @@ Here you can see screenshots of some real examples using `becho`.
 ![](preview/preview_0.png)
 ![](preview/preview_1.png)
 ![](preview/preview_2.png)
+![](preview/preview_3.png)
+![](preview/preview_4.png)
 
 
 ## Installation
@@ -37,21 +39,16 @@ follow these steps:
     `becho` and its manual in your system.
 
     ```bash
-    sudo make install
+    make install
     ```
-
-    `sudo` is required because this script will modify system directories.
 
   + if you want to uninstall `becho`, go back to the repository's directory
     and use `make` again, but with a different command:
 
     ```bash
-    sudo make uninstall
+    make uninstall
     ```
     
-    `sudo` is required because this script will modify system directories.
-
-
 ### Docker Installation
 
 There is a Docker image in this repository that you can use to test `becho`.

@@ -30,34 +30,31 @@ impl Treatments for String {
                 self.clone().to_lowercase()
             }
             "camel" => {
-                self.clone().to_case(Case::Camel)
+                self.clone().to_lowercase().to_case(Case::Camel)
             }
             "upper_camel" => {
-                self.clone().to_case(Case::UpperCamel)
+                self.clone().to_lowercase().to_case(Case::UpperCamel)
             }
             "title" => {
-                self.clone().to_case(Case::Title)
+                self.clone().to_lowercase().to_case(Case::Title)
             }
             "snake" => {
-                self.clone().to_case(Case::Snake)
+                self.clone().to_lowercase().to_case(Case::Snake)
             }
             "upper_snake" => {
-                self.clone().to_case(Case::ScreamingSnake)
+                self.clone().to_lowercase().to_case(Case::ScreamingSnake)
             }
             "kebab" => {
-                self.clone().to_case(Case::Kebab)
+                self.clone().to_lowercase().to_case(Case::Kebab)
             }
             "upper_kebab" => {
-                self.clone().to_case(Case::UpperKebab)
+                self.clone().to_lowercase().to_case(Case::UpperKebab)
             }
             "title_kebab" => {
-                self.clone().to_case(Case::Train)
+                self.clone().to_lowercase().to_case(Case::Train)
             }
             "alternate" => {
-                self.clone().to_case(Case::Alternating)
-            }
-            "invert" => {
-                self.clone().to_case(Case::Toggle)
+                self.clone().to_lowercase().to_case(Case::Alternating)
             }
             "normal" => {
                 self.clone()
