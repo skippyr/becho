@@ -9,7 +9,7 @@ pub trait Styles {
     fn color_background(&self, background_color: &str) -> String;
     fn dim(&self, is_dimmed: bool) -> String;
     fn remove_end_sequences(&self) -> String;
-    fn add_end_sequence(&self) -> String;
+    fn add_end_sequence(&self, is_to_add_end_sequence: bool) -> String;
 }
 
 impl Styles for String {
@@ -360,7 +360,11 @@ impl Styles for String {
             .replace("\u{1b}[49m", "")
     }
 
-    fn add_end_sequence(&self) -> String {
-        format!("{}\u{1b}[0m", self)
+    fn add_end_sequence(&self, is_to_add_end_sequence: bool) -> String {
+        if is_to_add_end_sequence {
+            format!("{}\u{1b}[0m", self)
+        } else {
+            self.to_string()
+        }
     }
 }
