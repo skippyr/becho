@@ -36,7 +36,6 @@ dependencies = [
  "convert_case",
  "crossterm",
  "textwrap",
- "unicode-width",
 ]
 
 [[package]]

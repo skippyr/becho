@@ -1,6 +1,8 @@
 use convert_case::{Case, Casing};
-use unicode_width::UnicodeWidthStr;
-use textwrap::wrap;
+use textwrap::{
+    wrap,
+    core::display_width,
+};
 use crossterm::style::Stylize;
 use crate::error::exit_process;
 
@@ -84,7 +86,7 @@ impl Treatments for String {
         ) -> String {
         let text_width: usize =
             width
-            - UnicodeWidthStr::width(left_indentation);
+            - display_width(left_indentation);
         if text_width > width {
             exit_process(
                 format!("can not fit text in width \"{}\".", width),
