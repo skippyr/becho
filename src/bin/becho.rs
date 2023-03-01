@@ -24,6 +24,7 @@ fn main() {
         .color_foreground(&arguments.foreground_color)
         .color_background(&arguments.background_color)
         .dim(arguments.is_dimmed)
+        .add_end_sequence()
         .treat_width_and_sides(
             arguments.width,
             &arguments.left_indentation,
