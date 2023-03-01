@@ -13,7 +13,11 @@ pub trait Styles {
 impl Styles for String {
     fn bold(&self, is_bold: bool) -> String {
         if is_bold {
-            self.clone().bold().to_string()
+            self
+                .split(" ")
+                .map(|word| word.bold().to_string())
+                .collect::<Vec<String>>()
+                .join(" ")
         } else {
             self.clone()
         }
@@ -21,7 +25,11 @@ impl Styles for String {
 
     fn cross_out(&self, is_crossed_text: bool) -> String {
         if is_crossed_text {
-            self.clone().crossed_out().to_string()
+            self
+                .split(" ")
+                .map(|word| word.crossed_out().to_string())
+                .collect::<Vec<String>>()
+                .join(" ")
         } else {
             self.clone()
         }
@@ -29,63 +37,100 @@ impl Styles for String {
 
     fn italicize(&self, is_italic: bool) -> String {
         if is_italic {
-            self.clone().italic().to_string()
+            self
+                .split(" ")
+                .map(|word| word.italic().to_string())
+                .collect::<Vec<String>>()
+                .join(" ")
         } else {
             self.clone()
         }
     }
 
     fn color_foreground(&self, foreground_color: &str) -> String {
-        match foreground_color {
+        let words = self.split(" ");
+        let words_treated: Vec<String> =  match foreground_color {
             "black" => {
-                self.clone().black().to_string()
+                words
+                    .map(|word| word.black().to_string())
+                    .collect::<Vec<String>>()
             }
             "dark_red" => {
-                self.clone().dark_red().to_string()
+                words
+                    .map(|word| word.dark_red().to_string())
+                    .collect::<Vec<String>>()
             }
             "red" => {
-                self.clone().clone().red().to_string()
+                words
+                    .map(|word| word.red().to_string())
+                    .collect::<Vec<String>>()
             }
             "dark_green" => {
-                self.clone().dark_green().to_string()
+                words
+                    .map(|word| word.dark_green().to_string())
+                    .collect::<Vec<String>>()
             }
             "green" => {
-                self.clone().green().to_string()
+                words
+                    .map(|word| word.green().to_string())
+                    .collect::<Vec<String>>()
             }
             "dark_yellow" => {
-                self.clone().dark_yellow().to_string()
+                words
+                    .map(|word| word.dark_yellow().to_string())
+                    .collect::<Vec<String>>()
             }
             "yellow" => {
-                self.clone().yellow().to_string()
+                words
+                    .map(|word| word.yellow().to_string())
+                    .collect::<Vec<String>>()
             }
             "dark_blue" => {
-                self.clone().dark_blue().to_string()
+                words
+                    .map(|word| word.dark_blue().to_string())
+                    .collect::<Vec<String>>()
             }
             "blue" => {
-                self.clone().blue().to_string()
+                words
+                    .map(|word| word.blue().to_string())
+                    .collect::<Vec<String>>()
             }
             "dark_magenta" => {
-                self.clone().dark_magenta().to_string()
+                words
+                    .map(|word| word.dark_magenta().to_string())
+                    .collect::<Vec<String>>()
             }
             "magenta" => {
-                self.clone().magenta().to_string()
+                words
+                    .map(|word| word.magenta().to_string())
+                    .collect::<Vec<String>>()
             }
             "dark_cyan" => {
-                self.clone().dark_cyan().to_string()
+                words
+                    .map(|word| word.dark_cyan().to_string())
+                    .collect::<Vec<String>>()
             }
             "cyan" => {
-                self.clone().cyan().to_string()
+                words
+                    .map(|word| word.cyan().to_string())
+                    .collect::<Vec<String>>()
             }
             "white" => {
-                self.clone().white().to_string()
+                words
+                    .map(|word| word.white().to_string())
+                    .collect::<Vec<String>>()
             }
             "normal" => {
-                self.clone()
+                words
+                    .map(|word| word.to_string())
+                    .collect::<Vec<String>>()
             }
             _ => {
                 match foreground_color.parse::<u8>() {
                     Ok(value) => {
-                        self.clone().with(Color::AnsiValue(value)).to_string()
+                        words
+                            .map(|word| word.with(Color::AnsiValue(value)).to_string())
+                            .collect::<Vec<String>>()
                     }
                     Err(_) => {
                         exit_process(
@@ -95,56 +140,102 @@ impl Styles for String {
                             ),
                             1,
                         );
-                        self.clone()
+                        words
+                            .map(|word| word.to_string())
+                            .collect::<Vec<String>>()
                     }
                 }
             }
-        }
+        };
+        words_treated.join(" ")
     }
 
     fn color_background(&self, background_color: &str) -> String {
+        let words = self.split(" ");
         match background_color {
             "black" => {
-                self.clone().on_black().to_string()
+                words
+                    .map(|word| word.on_black().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_black().to_string().as_str())
             }
             "dark_red" => {
-                self.clone().on_dark_red().to_string()
+                words
+                    .map(|word| word.on_dark_red().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_dark_red().to_string().as_str())
             }
             "red" => {
-                self.clone().on_red().to_string()
+                words
+                    .map(|word| word.on_red().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_red().to_string().as_str())
             }
             "dark_green" => {
-                self.clone().on_dark_green().to_string()
+                words
+                    .map(|word| word.on_dark_green().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_dark_green().to_string().as_str())
             }
             "green" => {
-                self.clone().on_green().to_string()
+                words
+                    .map(|word| word.on_green().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_green().to_string().as_str())
             }
             "dark_yellow" => {
-                self.clone().on_dark_yellow().to_string()
+                words
+                    .map(|word| word.on_dark_yellow().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_dark_yellow().to_string().as_str())
             }
             "yellow" => {
-                self.clone().on_yellow().to_string()
+                words
+                    .map(|word| word.on_yellow().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_yellow().to_string().as_str())
             }
             "dark_blue" => {
-                self.clone().on_dark_blue().to_string()
+                words
+                    .map(|word| word.on_dark_blue().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_dark_blue().to_string().as_str())
             }
             "blue" => {
-                self.clone().on_blue().to_string()
+                words
+                    .map(|word| word.on_blue().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_blue().to_string().as_str())
             }
             "dark_magenta" => {
-                self.clone().on_dark_magenta().to_string()
+                words
+                    .map(|word| word.on_dark_magenta().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_dark_magenta().to_string().as_str())
             }
             "magenta" => {
-                self.clone().on_magenta().to_string()
+                words
+                    .map(|word| word.on_magenta().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_magenta().to_string().as_str())
             }
             "dark_cyan" => {
-                self.clone().on_dark_cyan().to_string()
+                words
+                    .map(|word| word.on_dark_cyan().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_dark_cyan().to_string().as_str())
             }
             "cyan" => {
-                self.clone().on_cyan().to_string()
+                words
+                    .map(|word| word.on_cyan().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_cyan().to_string().as_str())
             }
             "white" => {
-                self.clone().on_white().to_string()
+                words
+                    .map(|word| word.on_white().to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ".on_white().to_string().as_str())
             }
             "normal" => {
                 self.clone()
@@ -152,7 +243,10 @@ impl Styles for String {
             _ => {
                 match background_color.parse::<u8>() {
                     Ok(value) => {
-                        self.clone().on(Color::AnsiValue(value)).to_string()
+                        words
+                            .map(|word| word.on(Color::AnsiValue(value)).to_string())
+                            .collect::<Vec<String>>()
+                            .join(" ".on(Color::AnsiValue(value)).to_string().as_str())
                     }
                     Err(_) => {
                         exit_process(
@@ -171,7 +265,11 @@ impl Styles for String {
 
     fn underline(&self, is_underline: bool) -> String {
         if is_underline {
-            self.clone().underlined().to_string()
+            self
+                .split(" ")
+                .map(|word| word.underlined().to_string())
+                .collect::<Vec<String>>()
+                .join(" ".underlined().to_string().as_str())
         } else {
             self.clone()
         }
@@ -179,7 +277,11 @@ impl Styles for String {
 
     fn dim(&self, is_dimmed: bool) -> String {
         if is_dimmed {
-            self.clone().dim().to_string()
+            self
+                .split(" ")
+                .map(|word| word.dim().to_string())
+                .collect::<Vec<String>>()
+                .join(" ")
         } else {
             self.clone()
         }
