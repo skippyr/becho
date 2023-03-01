@@ -1,9 +1,11 @@
 use clap::Parser;
+use terminal::get_terminal_width;
 
 pub mod styles;
 pub mod io;
 pub mod treatments;
 pub mod error;
+pub mod terminal;
 
 #[derive(Debug, Parser)]
 #[clap(version)]
@@ -89,6 +91,22 @@ pub struct Arguments {
         default_value_t = 1,
     )]
     pub number_of_repetitions: usize,
+
+    /// Defines a string to be used as left indentation.
+    #[arg(
+        short = 'l',
+        long = "left-indentation",
+        default_value_t = String::new(),
+    )]
+    pub left_indentation: String,
+
+    /// Defines the width of the output.
+    #[arg(
+        short = 'w',
+        long = "width",
+        default_value_t = get_terminal_width(),
+    )]
+    pub width: usize,
 
     /// Prints useful information for debugging to the standard error.
     #[arg(

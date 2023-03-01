@@ -1,9 +1,17 @@
 use convert_case::{Case, Casing};
+use unicode_width::UnicodeWidthStr;
+use textwrap::wrap;
+use crossterm::style::Stylize;
 use crate::error::exit_process;
 
 pub trait Treatments {
     fn escape_sequences(&self, is_to_escape: bool) -> String;
     fn treat_case(&self, case: &str) -> String;
+    fn treat_width_and_sides(
+        &self,
+        width: usize,
+        left_indentation: &str,
+    ) -> String;
 }
 
 impl Treatments for String {
@@ -67,5 +75,33 @@ impl Treatments for String {
                 self.clone()
             }
         }
+    }
+
+    fn treat_width_and_sides(
+            &self,
+            width: usize,
+            left_indentation: &str,
+        ) -> String {
+        let text_width: usize =
+            width
+            - UnicodeWidthStr::width(left_indentation);
+        if text_width > width {
+            exit_process(
+                format!("can not fit text in width \"{}\".", width),
+                1,
+            )
+        }
+        let lines = wrap(&self, text_width);
+        let mut lines_treated: Vec<String> = Vec::new();
+        for line in lines {
+            lines_treated.push(
+                format!(
+                    "{}{}",
+                    left_indentation,
+                    line,
+                )
+            )
+        }
+        lines_treated.join("\n".reset().to_string().as_str())
     }
 }

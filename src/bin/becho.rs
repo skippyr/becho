@@ -23,10 +23,14 @@ fn main() {
         .underline(arguments.is_underline)
         .color_foreground(&arguments.foreground_color)
         .color_background(&arguments.background_color)
-        .dim(arguments.is_dimmed);
+        .dim(arguments.is_dimmed)
+        .treat_width_and_sides(
+            arguments.width,
+            &arguments.left_indentation,
+        );
     print_to_stdout(
         output,
         arguments.number_of_repetitions,
-        arguments.is_no_end_new_line
+        arguments.is_no_end_new_line,
     );
 }

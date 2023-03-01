@@ -70,6 +70,6 @@ There is a Docker image in this repository that you can use to test `becho`.
 Please refer to the manual of `becho` after you install it by using
 `becho --help` or `man becho`.
 
-## License
+## Copyright
 
-Copyright (c) Sherman Rofeman, 2023. MIT License.
+Copyright (c) 2023, Sherman Rofeman. MIT License.
