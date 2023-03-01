@@ -1,9 +1,8 @@
 # Becho
 
 `becho` is a terminal utility designed to help you treat, style and print text
-to the standard output. It is my rethink of the `echo` command with more
-features, but features of other commands like `tr`, `fmt` and `fold` can
-also be found on it.
+to the standard output. It is my rethink of the `echo` command but features of
+other commands like `tr`, `fmt` and `fold` can also be found on it.
 
 It should work in both Linux and MacOS.
 
@@ -60,13 +59,14 @@ There is a Docker image in this repository that you can use to test `becho`.
 ## What features it has?
 `becho` can:
   + change the foreground and background color of a text and apply dim colors.
-  + place a separator between the arguments received, useful when arranging
-    arrays.
+  + place a separator between the arguments received, useful when print elements
+    of shell script array.
   + apply bold, italic, underline and crossed out text.
-  + change the case of your text.
+  + change the case of your text to a variety of cases, useful when printing
+    titles and names.
   + escape new line (\n), tab (\t) and escape (\e, \x1b and \033) characters.
   + repeat the output.
-  + adjust left indentation.
+  + adjust left indentation, that can even contains colored symbol.
   + control width and wrap text properly even with color sequences.
 
 

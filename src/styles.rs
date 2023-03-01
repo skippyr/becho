@@ -8,7 +8,7 @@ pub trait Styles {
     fn color_foreground(&self, foreground_color: &str) -> String;
     fn color_background(&self, background_color: &str) -> String;
     fn dim(&self, is_dimmed: bool) -> String;
-    fn remove_end_sequence(&self) -> String;
+    fn remove_end_sequences(&self) -> String;
     fn add_end_sequence(&self) -> String;
 }
 
@@ -17,7 +17,7 @@ impl Styles for String {
         if is_bold {
             self
                 .split(" ")
-                .map(|word| word.bold().to_string().remove_end_sequence())
+                .map(|word| word.bold().to_string().remove_end_sequences())
                 .collect::<Vec<String>>()
                 .join(" ")
         } else {
@@ -30,7 +30,7 @@ impl Styles for String {
             self
                 .split(" ")
                 .map(|word| {
-                    word.crossed_out().to_string().remove_end_sequence()
+                    word.crossed_out().to_string().remove_end_sequences()
                 })
                 .collect::<Vec<String>>()
                 .join(" ")
@@ -44,7 +44,7 @@ impl Styles for String {
             self
                 .split(" ")
                 .map(|word| {
-                    word.italic().to_string().remove_end_sequence()
+                    word.italic().to_string().remove_end_sequences()
                 })
                 .collect::<Vec<String>>()
                 .join(" ")
@@ -59,98 +59,98 @@ impl Styles for String {
             "black" => {
                 words
                     .map(|word| {
-                        word.black().to_string().remove_end_sequence()
+                        word.black().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_red" => {
                 words
                     .map(|word| {
-                        word.dark_red().to_string().remove_end_sequence()
+                        word.dark_red().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "red" => {
                 words
                     .map(|word| {
-                        word.red().to_string().remove_end_sequence()
+                        word.red().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_green" => {
                 words
                     .map(|word| {
-                        word.dark_green().to_string().remove_end_sequence()
+                        word.dark_green().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "green" => {
                 words
                     .map(|word| {
-                        word.green().to_string().remove_end_sequence()
+                        word.green().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_yellow" => {
                 words
                     .map(|word| {
-                        word.dark_yellow().to_string().remove_end_sequence()
+                        word.dark_yellow().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "yellow" => {
                 words
                     .map(|word| {
-                        word.yellow().to_string().remove_end_sequence()
+                        word.yellow().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_blue" => {
                 words
                     .map(|word| {
-                        word.dark_blue().to_string().remove_end_sequence()
+                        word.dark_blue().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "blue" => {
                 words
                     .map(|word| {
-                        word.blue().to_string().remove_end_sequence()
+                        word.blue().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_magenta" => {
                 words
                     .map(|word| {
-                        word.dark_magenta().to_string().remove_end_sequence()
+                        word.dark_magenta().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "magenta" => {
                 words
                     .map(|word| {
-                        word.magenta().to_string().remove_end_sequence()
+                        word.magenta().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_cyan" => {
                 words
                     .map(|word| {
-                        word.dark_cyan().to_string().remove_end_sequence()
+                        word.dark_cyan().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "cyan" => {
                 words
                     .map(|word| {
-                        word.cyan().to_string().remove_end_sequence()
+                        word.cyan().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "white" => {
                 words
                     .map(|word| {
-                        word.white().to_string().remove_end_sequence()
+                        word.white().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
@@ -167,7 +167,7 @@ impl Styles for String {
                                 word
                                     .with(Color::AnsiValue(value))
                                     .to_string()
-                                    .remove_end_sequence()
+                                    .remove_end_sequences()
                             })
                             .collect::<Vec<String>>()
                     }
@@ -195,98 +195,98 @@ impl Styles for String {
             "black" => {
                 words
                     .map(|word| {
-                        word.on_black().to_string().remove_end_sequence()
+                        word.on_black().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_red" => {
                 words
                     .map(|word| {
-                        word.on_dark_red().to_string().remove_end_sequence()
+                        word.on_dark_red().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "red" => {
                 words
                     .map(|word| {
-                        word.on_red().to_string().remove_end_sequence()
+                        word.on_red().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_green" => {
                 words
                     .map(|word| {
-                        word.on_dark_green().to_string().remove_end_sequence()
+                        word.on_dark_green().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "green" => {
                 words
                     .map(|word| {
-                        word.on_green().to_string().remove_end_sequence()
+                        word.on_green().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_yellow" => {
                 words
                     .map(|word| {
-                        word.on_dark_yellow().to_string().remove_end_sequence()
+                        word.on_dark_yellow().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "yellow" => {
                 words
                     .map(|word| {
-                        word.on_yellow().to_string().remove_end_sequence()
+                        word.on_yellow().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_blue" => {
                 words
                     .map(|word| {
-                        word.on_dark_blue().to_string().remove_end_sequence()
+                        word.on_dark_blue().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "blue" => {
                 words
                     .map(|word| {
-                        word.on_blue().to_string().remove_end_sequence()
+                        word.on_blue().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_magenta" => {
                 words
                     .map(|word| {
-                        word.on_dark_magenta().to_string().remove_end_sequence()
+                        word.on_dark_magenta().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "magenta" => {
                 words
                     .map(|word| {
-                        word.on_magenta().to_string().remove_end_sequence()
+                        word.on_magenta().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "dark_cyan" => {
                 words
                     .map(|word| {
-                        word.on_dark_cyan().to_string().remove_end_sequence()
+                        word.on_dark_cyan().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "cyan" => {
                 words
                     .map(|word| {
-                        word.on_cyan().to_string().remove_end_sequence()
+                        word.on_cyan().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "white" => {
                 words
                     .map(|word| {
-                        word.on_white().to_string().remove_end_sequence()
+                        word.on_white().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
@@ -303,7 +303,7 @@ impl Styles for String {
                                 word
                                     .on(Color::AnsiValue(value))
                                     .to_string()
-                                    .remove_end_sequence()
+                                    .remove_end_sequences()
                             })
                             .collect::<Vec<String>>()
                     }
@@ -330,7 +330,7 @@ impl Styles for String {
             self
                 .split(" ")
                 .map(|word| {
-                    word.underlined().to_string().remove_end_sequence()
+                    word.underlined().to_string().remove_end_sequences()
                 })
                 .collect::<Vec<String>>()
                 .join(" ")
@@ -344,7 +344,7 @@ impl Styles for String {
             self
                 .split(" ")
                 .map(|word| {
-                    word.dim().to_string().remove_end_sequence()
+                    word.dim().to_string().remove_end_sequences()
                 })
                 .collect::<Vec<String>>()
                 .join(" ")
@@ -353,7 +353,7 @@ impl Styles for String {
         }
     }
 
-    fn remove_end_sequence(&self) -> String {
+    fn remove_end_sequences(&self) -> String {
         self
             .replace("\u{1b}[0m", "")
             .replace("\u{1b}[39m", "")
