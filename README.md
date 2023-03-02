@@ -5,7 +5,7 @@ to the standard output. It is my rethink of the `echo` command with new features
 mixed with features that you can find in other commands like `tr`, `fmt` and
 `fold`.
 
-As the name implies, `becho` means `better echo` and is the tool you have
+As the name implies, `becho` means `better echo`. It is the tool that you have
 been missing for a long time to properly create beautiful and maintanable shell
 scripts.
 
@@ -27,6 +27,7 @@ Here you can see screenshots of some real examples using `becho`.
 
 
 ## Installation
+
 
 ### Manual Installation
 
@@ -57,6 +58,7 @@ follow these steps:
     make uninstall
     ```
     
+
 ### Docker Installation
 
 There is a Docker image in this repository that you can use to test `becho`.
@@ -74,6 +76,7 @@ There is a Docker image in this repository that you can use to test `becho`.
   + repeat the output.
   + adjust left indentation, that can even contains colored symbol.
   + control width and wrap text properly even with color sequences.
+  + ignore empty text fragments even with color sequences.
 
 
 ## More Information
@@ -87,6 +90,7 @@ Please refer to the manual of `becho` after you install it by using
 If you have found an issue while using this software, you can report it in
 the issues tab of its page on GitHub. Enhacements can also be asked in the
 same way.
+
 
 ## Copyright
 
