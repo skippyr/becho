@@ -24,6 +24,7 @@ Here you can see screenshots of some real examples using `becho`.
 ![](preview/preview_5.png)
 ![](preview/preview_6.png)
 ![](preview/preview_7.png)
+![](preview/preview_8.png)
 
 
 ## Installation
