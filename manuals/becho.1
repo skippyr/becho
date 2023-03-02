@@ -44,6 +44,10 @@ Do not use a new line character in the end of output.
 Defines the number of times the output will be repeated.
 
 .TP
+\fB-I\fR, \fB--ignore-empty\fR
+Ignores text fragments that, if trimmed, are an empty string.
+
+.TP
 \fB-b\fR, \fB--bold\fR
 Uses bold text. It only works if your font has bold characters.
 
@@ -92,6 +96,7 @@ string.
 \fB-w\fR, \fB--width\fR=\fIWIDTH\fR
 Defines the width of the output. By default, it will use the terminal width, or,
 if it can not measure it, 80.
+
 
 .SH COLORS
 These are the available colors from the 4-bits palette you can use for color

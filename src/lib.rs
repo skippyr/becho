@@ -92,6 +92,14 @@ pub struct Arguments {
     )]
     pub number_of_repetitions: usize,
 
+    /// Ignores text fragments that, if trimmed, are an empty string.
+    #[arg(
+        short = 'I',
+        long = "ignore-empty",
+        action,
+    )]
+    pub is_to_ignore_empty: bool,
+
     /// Defines a string to be used as left indentation.
     #[arg(
         short = 'l',

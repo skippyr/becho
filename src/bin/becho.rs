@@ -5,10 +5,23 @@ use becho::{
     treatments::Treatments,
     io::print_to_stdout,
 };
+use textwrap::core::display_width;
 
 fn main() {
     let arguments: Arguments = Arguments::parse();
-    let text: String = arguments.text_fragments.join(&arguments.separator);
+    let text: String = if arguments.is_to_ignore_empty {
+        let mut non_empty_text_fragments = Vec::new();
+
+        for text_fragment in arguments.text_fragments.clone() {
+            if display_width(text_fragment.trim()) > 0 {
+                non_empty_text_fragments.push(text_fragment)
+            }
+        }
+
+        non_empty_text_fragments.join(&arguments.separator)
+    } else {
+        arguments.text_fragments.join(&arguments.separator)
+    };
 
     if arguments.is_verbose {
         eprintln!("{:#?}", arguments);
