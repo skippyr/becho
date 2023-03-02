@@ -80,6 +80,12 @@ There is a Docker image in this repository that you can use to test `becho`.
   + ignore empty text fragments even with color sequences.
 
 
+## Testings
+
+You can test `becho`'s capabilities by using it, after it has been instaled, by
+running the example scripts at `scripts/examples`.
+
+
 ## More Information
 
 Please refer to the manual of `becho` after you install it by using
