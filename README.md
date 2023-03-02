@@ -1,8 +1,13 @@
 # Becho
 
 `becho` is a terminal utility designed to help you treat, style and print text
-to the standard output. It is my rethink of the `echo` command but features of
-other commands like `tr`, `fmt` and `fold` can also be found on it.
+to the standard output. It is my rethink of the `echo` command with new features
+mixed with features that you can find in other commands like `tr`, `fmt` and
+`fold`.
+
+As the name implies, `becho` means `better echo` and is the tool you have
+been missing for a long time to properly create beautiful and maintanable shell
+scripts.
 
 It should work in both Linux and MacOS.
 
@@ -75,6 +80,13 @@ There is a Docker image in this repository that you can use to test `becho`.
 
 Please refer to the manual of `becho` after you install it by using
 `becho --help` or `man becho`.
+
+
+## Issues And Enhancements
+
+If you have found an issue while using this software, you can report it in
+the issues tab of its page on GitHub. Enhacements can also be asked in the
+same way.
 
 ## Copyright
 
