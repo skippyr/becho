@@ -8,6 +8,8 @@ pub trait Styles {
     fn color_foreground(&self, foreground_color: &str) -> String;
     fn color_background(&self, background_color: &str) -> String;
     fn dim(&self, is_dimmed: bool) -> String;
+    fn reverse_characters(&self) -> String;
+    fn remove_last_substring(&self, substring: &str) -> String;
     fn remove_end_sequences(&self) -> String;
     fn add_end_sequence(&self, is_to_add_end_sequence: bool) -> String;
 }
@@ -353,11 +355,34 @@ impl Styles for String {
         }
     }
 
+    fn reverse_characters(&self) -> String {
+        self
+            .chars()
+            .rev()
+            .map(|character| character.to_string())
+            .collect::<Vec<String>>()
+            .join("")
+    }
+
+    fn remove_last_substring(&self, substring: &str) -> String {
+        self
+            .reverse_characters()
+            .replacen(
+                substring
+                    .to_string()
+                    .reverse_characters()
+                    .as_str(),
+                    "",
+                    1
+                )
+            .reverse_characters()
+    }
+
     fn remove_end_sequences(&self) -> String {
         self
-            .replace("\u{1b}[0m", "")
-            .replace("\u{1b}[39m", "")
-            .replace("\u{1b}[49m", "")
+            .remove_last_substring("\u{1b}[0m")
+            .remove_last_substring("\u{1b}[39m")
+            .remove_last_substring("\u{1b}[49m")
     }
 
     fn add_end_sequence(&self, is_to_add_end_sequence: bool) -> String {
