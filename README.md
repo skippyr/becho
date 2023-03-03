@@ -1,31 +1,43 @@
 # Becho
 
 `becho` is a terminal utility designed to help you treat, style and print text
-to the standard output. It is my rethink of the `echo` command with new features
-mixed with features that you can find in other commands like `tr`, `fmt` and
-`fold`.
+to the standard output. As the name implies, `becho` means `better echo`: 
+it is my rethink of the `echo` command with new features mixed with features
+that you can find in other commands like `tr`, `fmt` and `fold`.
 
-As the name implies, `becho` means `better echo`. It is the tool that you have
-been missing for a long time to properly create beautiful and maintanable shell
-scripts.
+It is the tool that you have been missing for a long time to properly create
+beautiful and maintanable shell scripts.
 
 It should work in both Linux and MacOS.
 
 
+## What features it has?
+`becho` can:
+  + change the foreground and background color of a text and apply dim colors.
+  + place a separator between the arguments received, useful when print elements
+    of shell script array.
+  + apply bold, italic, underline and crossed out text.
+  + change the case of your text to a variety of cases, useful when printing
+    titles and names.
+  + escape new line (\n), tab (\t) and escape (\e, \x1b and \033) characters.
+  + repeat the output a desired number of times.
+  + adjust left indentation, that can even contains colored symbol.
+  + control width and wrap text properly even if it contains color sequences.
+  + ignore empty text fragments even if it contains color sequences.
+
+
 ## Preview
 
-Here you can see screenshots of some real examples using `becho`.
+Here you can see screenshots of some real examples using `becho` in some
+scripts.
 
-![](preview/preview_0.png)
-![](preview/preview_1.png)
-![](preview/preview_2.png)
-![](preview/preview_3.png)
-![](preview/preview_4.png)
-![](preview/preview_5.png)
-![](preview/preview_6.png)
-![](preview/preview_7.png)
-![](preview/preview_8.png)
+![](images/preview/operating_system_startup.png)
+![](images/preview/paragraph_wrap.png)
+![](images/preview/name_treater.png)
+![](images/preview/core_temperatures.png)
 
+Those scripts are at `scripts/examples` for you to test after you have
+installed `becho`.
 
 ## Installation
 
@@ -58,32 +70,12 @@ follow these steps:
     ```bash
     make uninstall
     ```
-    
+   
 
 ### Docker Installation
 
-There is a Docker image in this repository that you can use to test `becho`.
-
-
-## What features it has?
-`becho` can:
-  + change the foreground and background color of a text and apply dim colors.
-  + place a separator between the arguments received, useful when print elements
-    of shell script array.
-  + apply bold, italic, underline and crossed out text.
-  + change the case of your text to a variety of cases, useful when printing
-    titles and names.
-  + escape new line (\n), tab (\t) and escape (\e, \x1b and \033) characters.
-  + repeat the output.
-  + adjust left indentation, that can even contains colored symbol.
-  + control width and wrap text properly even with color sequences.
-  + ignore empty text fragments even with color sequences.
-
-
-## Testings
-
-You can test `becho`'s capabilities by using it, after it has been instaled, by
-running the example scripts at `scripts/examples`.
+There is a Docker image in this repository that comes with `becho`
+pre-installed. You can use it to test it.
 
 
 ## More Information

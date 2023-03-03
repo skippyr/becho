@@ -18,20 +18,32 @@ log_message() {
     fail)
       color=red
       ;;
+    warn)
+      color=yellow
+      ;;
   esac
 
-  becho "$(becho -b [$(becho -f ${color} ${status})]) ${action} $(becho -b ${text})"
+  becho -l "  $(becho -bf dark_red "*") " -w 80 "$(becho -b [)$(becho -bf ${color} ${status})$(becho -b ]) $(becho -i ${action}) $(becho -b ${text}) ..."
   sleep_randomly
 }
 
 main() {
+  local -r system_name="example linux"
+  local -r system_version=2.0.5
+  local -r system_author="Sherman Rofeman"
+  becho "$(becho -i -f dark_red -c title ${system_name}) $(becho -bf dark_green ${system_version}) by $(becho -f dark_blue ${system_author})."
+  sleep 3
+
   local -r messages=(
     "OK initiating operating system"
     "OK initiating basic services"
     "OK using DHCP to stablish LAN connection"
     "OK downloading latest software updates"
     "FAIL discovering existing operating systems"
+    "OK verifying kernel status"
+    "WARN verifying available drivers compatibility"
   )
+
   for message in "${messages[@]}"; do
     log_message ${message}
   done
