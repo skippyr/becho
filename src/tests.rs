@@ -173,26 +173,41 @@ fn test_background_colors() {
 #[test]
 fn test_reverse_characters() {
     let text: String = String::from("test");
-    assert_eq!(text.reverse_characters(), String::from("tset"));
+    assert_eq!(
+        text.reverse_characters(),
+        String::from("tset"),
+        "testing if string has characters reversed.",
+    );
 }
 
 #[test]
 fn test_remove_last_substring() {
     let text: String = String::from("test\t\n\n");
-    assert_eq!(text.remove_last_substring("\n"), String::from("test\t\n"));
+    assert_eq!(
+        text.remove_last_substring("\n"),
+        String::from("test\t\n"),
+        "testing if last substring in a string is removed.",
+    );
 }
 
 #[test]
 fn test_remove_end_sequences() {
     let text: String = String::from("\u{1b}[38;5;1m\u{1b}[4m\u{1b}[3m\u{1b}[9m\
     \u{1b}[1mtest\u{1b}[0m\u{1b}[49m\u{1b}[39m\u{1b}[0m");
-    assert_eq!(text.remove_end_sequences(), String::from("\u{1b}[38;5;1m\
-    \u{1b}[4m\u{1b}[3m\u{1b}[9m\u{1b}[1mtest\u{1b}[0m"));
+    assert_eq!(
+        text.remove_end_sequences(),
+        String::from("\u{1b}[38;5;1m\u{1b}[4m\u{1b}[3m\u{1b}[9m\u{1b}[1mtest\
+        \u{1b}[0m"),
+        "testing if last style end sequences are removed.",
+    );
 }
 
 #[test]
 fn test_add_end_sequence() {
     let text: String = String::from("\u{1b}[1mtest");
-    assert_eq!(text.add_end_sequence(true), String::from("\u{1b}[1mtest\
-    \u{1b}[0m"));
+    assert_eq!(
+        text.add_end_sequence(true),
+        String::from("\u{1b}[1mtest\u{1b}[0m"),
+        "testing if style end sequences is added.",
+    );
 }
