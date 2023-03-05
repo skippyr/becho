@@ -65,84 +65,94 @@ impl Styles for String {
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_red" => {
+            "light_black" => {
                 words
                     .map(|word| {
-                        word.dark_red().to_string().remove_end_sequences()
+                        word
+                            .with(Color::AnsiValue(8))
+                            .to_string()
+                            .remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "red" => {
                 words
                     .map(|word| {
-                        word.red().to_string().remove_end_sequences()
+                        word.dark_red().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_green" => {
+            "light_red" => {
                 words
                     .map(|word| {
-                        word.dark_green().to_string().remove_end_sequences()
+                        word.red().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "green" => {
                 words
                     .map(|word| {
-                        word.green().to_string().remove_end_sequences()
+                        word.dark_green().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_yellow" => {
+            "light_green" => {
                 words
                     .map(|word| {
-                        word.dark_yellow().to_string().remove_end_sequences()
+                        word.green().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "yellow" => {
                 words
                     .map(|word| {
-                        word.yellow().to_string().remove_end_sequences()
+                        word.dark_yellow().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_blue" => {
+            "light_yellow" => {
                 words
                     .map(|word| {
-                        word.dark_blue().to_string().remove_end_sequences()
+                        word.yellow().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "blue" => {
                 words
                     .map(|word| {
-                        word.blue().to_string().remove_end_sequences()
+                        word.dark_blue().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_magenta" => {
+            "light_blue" => {
                 words
                     .map(|word| {
-                        word.dark_magenta().to_string().remove_end_sequences()
+                        word.blue().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "magenta" => {
                 words
                     .map(|word| {
+                        word.dark_magenta().to_string().remove_end_sequences()
+                    })
+                    .collect::<Vec<String>>()
+            }
+            "light_magenta" => {
+                words
+                    .map(|word| {
                         word.magenta().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_cyan" => {
+            "cyan" => {
                 words
                     .map(|word| {
                         word.dark_cyan().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "cyan" => {
+            "light_cyan" => {
                 words
                     .map(|word| {
                         word.cyan().to_string().remove_end_sequences()
@@ -152,7 +162,20 @@ impl Styles for String {
             "white" => {
                 words
                     .map(|word| {
-                        word.white().to_string().remove_end_sequences()
+                        word
+                            .with(Color::AnsiValue(7))
+                            .to_string()
+                            .remove_end_sequences()
+                    })
+                    .collect::<Vec<String>>()
+            }
+            "light_white" => {
+                words
+                    .map(|word| {
+                        word
+                            .with(Color::AnsiValue(15))
+                            .to_string()
+                            .remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
@@ -201,84 +224,94 @@ impl Styles for String {
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_red" => {
+            "light_black" => {
                 words
                     .map(|word| {
-                        word.on_dark_red().to_string().remove_end_sequences()
+                        word
+                            .on(Color::AnsiValue(8))
+                            .to_string()
+                            .remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "red" => {
                 words
                     .map(|word| {
-                        word.on_red().to_string().remove_end_sequences()
+                        word.on_dark_red().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_green" => {
+            "light_red" => {
                 words
                     .map(|word| {
-                        word.on_dark_green().to_string().remove_end_sequences()
+                        word.on_red().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "green" => {
                 words
                     .map(|word| {
-                        word.on_green().to_string().remove_end_sequences()
+                        word.on_dark_green().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_yellow" => {
+            "light_green" => {
                 words
                     .map(|word| {
-                        word.on_dark_yellow().to_string().remove_end_sequences()
+                        word.on_green().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "yellow" => {
                 words
                     .map(|word| {
-                        word.on_yellow().to_string().remove_end_sequences()
+                        word.on_dark_yellow().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_blue" => {
+            "light_yellow" => {
                 words
                     .map(|word| {
-                        word.on_dark_blue().to_string().remove_end_sequences()
+                        word.on_yellow().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "blue" => {
                 words
                     .map(|word| {
-                        word.on_blue().to_string().remove_end_sequences()
+                        word.on_dark_blue().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_magenta" => {
+            "light_blue" => {
                 words
                     .map(|word| {
-                        word.on_dark_magenta().to_string().remove_end_sequences()
+                        word.on_blue().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
             "magenta" => {
                 words
                     .map(|word| {
+                        word.on_dark_magenta().to_string().remove_end_sequences()
+                    })
+                    .collect::<Vec<String>>()
+            }
+            "light_magenta" => {
+                words
+                    .map(|word| {
                         word.on_magenta().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "dark_cyan" => {
+            "cyan" => {
                 words
                     .map(|word| {
                         word.on_dark_cyan().to_string().remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }
-            "cyan" => {
+            "light_cyan" => {
                 words
                     .map(|word| {
                         word.on_cyan().to_string().remove_end_sequences()
@@ -288,7 +321,20 @@ impl Styles for String {
             "white" => {
                 words
                     .map(|word| {
-                        word.on_white().to_string().remove_end_sequences()
+                        word
+                            .on(Color::AnsiValue(7))
+                            .to_string()
+                            .remove_end_sequences()
+                    })
+                    .collect::<Vec<String>>()
+            }
+            "light_white" => {
+                words
+                    .map(|word| {
+                        word
+                            .on(Color::AnsiValue(15))
+                            .to_string()
+                            .remove_end_sequences()
                     })
                     .collect::<Vec<String>>()
             }

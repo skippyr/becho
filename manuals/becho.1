@@ -99,53 +99,56 @@ if it can not measure it, 80.
 
 
 .SH COLORS
-These are the available colors from the 4-bits palette you can use for color
-flags:
 
-  - black
-  - dark_red
-  - red
-  - dark_green
-  - green
-  - dark_yellow
-  - yellow
-  - dark_blue
-  - blue
-  - dark_magenta
-  - magenta
-  - dark_cyan
-  - cyan
-  - white
-  - normal (default): maintains the default colors of the terminal.
+When applying colors, you can use values from the 8-bits palette, that goes
+from 0 to 255. Alternatively, you can use a name from a color from the 4-bits
+palette:
 
-You can also use a value from the 8-bits palette, that goes from 0 to 255. This
-palette also includes the 4-bits palette and can be used instead of using the
-name of the color.
+  - \fBblack\fR: same as value 0.
+  - \fBlight_black\fR: same as value 8.
+  - \fBred\fR: same as value 1.
+  - \fBlight_red\fR: same as value 9.
+  - \fBgreen\fR: same as value 2.
+  - \fBlight_green\fR: same as value 10.
+  - \fByellow\fR: same as value 3.
+  - \fBlight_yellow\fR: same as value 11.
+  - \fBblue\fR: same as value 4.
+  - \fBlight_blue\fR: same as value 12.
+  - \fBmagenta\fR: same as value 5.
+  - \fBlight_magenta\fR: same as value 13.
+  - \fBcyan\fR: same as value 6.
+  - \fBlight_cyan\fR: same as value 14.
+  - \fBwhite\fR: same as value 7.
+  - \fBlight_white\fR: same as value 15.
+  - \fBnormal (default)\fR: maintains the default colors of the terminal.
+
 
 .SH CASES
 These are the available cases that can be used with the case flag:
 
-  - upper: all letters are in upper case.
-  - lower: all letter are in lower case.
-  - camel: with exception of the first word, that is all in lower case, all
+  - \fBupper\fR: all letters are in upper case.
+  - \fBlower\fR: all letter are in lower case.
+  - \fBcamel\fR: with exception of the first word, that is all in lower case, all
            initials are upper case and the rest of the words in lower case.
            All spacing between words is removed.
-  - upper_camel: Same as camel, but the first word is not an exception.
-  - title: all initials are in upper case and the rest of the words in lower
+  - \fBupper_camel\fR: Same as camel, but the first word is not an exception.
+  - \fBtitle\fR: all initials are in upper case and the rest of the words in lower
            case.
-  - snake: all letters are in lower case and separated by one underline.
-  - upper_snake: same as snake case but all letter are in upper case.
-  - kebak: all letters are in lower case and separated by one dash.
-  - upper_kebab: same as kebab but all letters are in upper case.
-  - title_kebab: same as kebab but the initials are in upper case and the rest
+  - \fBsnake\fR: all letters are in lower case and separated by one underline.
+  - \fBupper_snake\fR: same as snake case but all letter are in upper case.
+  - \fBkebak\fR: all letters are in lower case and separated by one dash.
+  - \fBupper_kebab\fR: same as kebab but all letters are in upper case.
+  - \fBtitle_kebab\fR: same as kebab but the initials are in upper case and the rest
                  of the words in lower case.
-  - alternate: alternates between the use of upper and lower case.
-  - normal (default): maintains the default case of the text.
+  - \fBalternate\fR: alternates between the use of upper and lower case.
+  - \fBnormal (default)\fR: maintains the default case of the text.
+
 
 .SH AUTHOR
 Sherman Rofeman <skippyr.developer@gmail.com>
 
 Official homepage: https://github.com/skippyr/becho.
+
 
 .SH COPYRIGHT
 Copyright (c) 2023, Sherman Rofeman. MIT License.
