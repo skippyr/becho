@@ -86,12 +86,13 @@ Please refer to the manual of `becho` after you install it by using
 
 ## See Also
 
-Are you looking for a color scheme? I am proud to announce that
-[`Tropical Paradise`](https://github.com/skippyr/tropical_paradise) has been
-released with light and dark variants. What about checking it out?
+  + [`Tropical Paradise`](https://github.com/skippyr/tropical_paradise) - A
+    beautiful and useful color scheme made for terminal wizards.
+  + [`River Dreams`](https://github.com/skippyr/river_dreams) - The ZSH theme
+    that developers have been dreaming for a long time.
+  + [`Recursive`](https://github.com/arrowtype/recursive) - a perfect coding
+    font.
 
-And a font? `ArrowType` has released the
-[`Recursive`](https://github.com/arrowtype/recursive) font that looks perfect.
 
 ## Issues And Enhancements
 
