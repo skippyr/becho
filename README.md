@@ -36,8 +36,6 @@ scripts.
 ![](images/preview/paragraph_wrap.png)
 ![](images/preview/cpu_temperatures.png)
 
-Those scripts are at `scripts/examples` for you to test after you have
-installed `becho`.
 
 ## Installation
 
@@ -80,11 +78,22 @@ pre-installed. You can use it to test it.
 
 ## More Information
 
-If you are a user, please refer to the manual of `becho` after you install it by
+If you are an user, please refer to the manual of `becho` after you install it by
 using `becho --help` or `man becho`.
 
 If you are a developer, you can use `cargo` to compile the internal
 documentation and open it in your default browser by using `cargo doc --open`.
+
+
+## Testings
+
+If you are an user, you can test `becho`'s capability by using the scripts
+at `scripts/examples`. Those scripts are the same used in the screenshots in
+the `Preview` section.
+
+If you are a developer, you can use `cargo` to run tests appended to the code
+and its documentation to check if everything is working as expected by using
+`cargo test`.
 
 
 ## See Also

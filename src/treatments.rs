@@ -17,7 +17,7 @@ pub trait Treatments {
     
     /// Treats the case of a string based on the value of the argument `case`.
     ///
-    ///
+    /// 
     /// ### Panics
     /// 
     /// It panics and exits the main process if the `case` value is considered

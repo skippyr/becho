@@ -2,21 +2,69 @@
 
 use crossterm::style::{Color, Stylize};
 use crate::error::exit_process;
+
+/// A trait that contains styles appliance to be implemented for the `String`
+/// type.
 pub trait Styles {
+    /// Applies the bold sequence (`\u{1b}[1m`) in the start of the string based
+    /// on the value of the boolean argument `is_bold`.
     fn bold(&self, is_bold: bool) -> String;
+
+    /// Applies the crossed out sequence (`\u{1b}[9m`) in the start of the
+    /// string based on the value of the boolean argument `is_crossed`.
     fn cross_out(&self, is_crossed: bool) -> String;
+
+    /// Applies the italic sequence (`\u{1b}[3m`) in the start of the
+    /// string based on the value of the boolean argument `is_italic`.
     fn italicize(&self, is_italic: bool) -> String;
+
+    /// Applies the underline sequence (`\u{1b}[4m`) in the start of the
+    /// string based on the value of the boolean argument `is_underline`.
     fn underline(&self, is_underline: bool) -> String;
+
+    /// Applies a foreground color sequence (`\u{1b}[38;5;xm`) – where `x` is a
+    /// value from the 8-bits color palette - in the start of the string based
+    /// on the value of the argument `foreground_color`.
+    /// 
+    /// 
+    /// ### Panics
+    /// 
+    /// It panics and exits the main process if the `foreground_color` value is
+    /// considered invalid.
     fn color_foreground(&self, foreground_color: &str) -> String;
+
+    /// Applies a foreground color sequence (`\u{1b}[48;5;xm`) – where `x` is a
+    /// value from the 8-bits color palette - in the start of the string based
+    /// on the value of the argument `background_color`.
+    /// 
+    /// 
+    /// ### Panics
+    /// 
+    /// It panics and exits the main process if the `background_color` value is
+    /// considered invalid.
     fn color_background(&self, background_color: &str) -> String;
+
+    /// Applies the underline sequence (`\u{1b}[2m`) in the start of the
+    /// string based on the value of the boolean argument `is_dimmed`.
     fn dim(&self, is_dimmed: bool) -> String;
+
+    /// Returns a string with its character reversed.
     fn reverse_characters(&self) -> String;
+
+    /// Removes only the last occurrence of a substring in a string.
     fn remove_last_substring(&self, substring: &str) -> String;
+    
+    /// Removes the last occurrence of any style end sequences
+    /// (`\u{1b}[0m`, `\u{1b}[39m` and `\u{1b}[49m`) from a string.
     fn remove_end_sequences(&self) -> String;
+
+    /// Adds the style end sequence `\u{1b}[0m` in the end of a string based
+    /// on the value of the boolean argument `is_to_add_end_sequence`.
     fn add_end_sequence(&self, is_to_add_end_sequence: bool) -> String;
 }
 
 impl Styles for String {
+    /// Applies 
     fn bold(&self, is_bold: bool) -> String {
         if is_bold {
             self

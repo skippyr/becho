@@ -5,9 +5,11 @@ use std::process::exit;
 /// Exits the main process with an exit code and prints a message to the
 /// standard error.
 /// 
+/// 
 /// ### Panics
 /// 
 /// This function will make the main process panic to then exit it.
+/// 
 /// 
 /// ### Examples
 /// 
