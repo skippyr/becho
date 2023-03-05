@@ -1,3 +1,5 @@
+//! Contains functions related to string treatments and text wrapping.
+
 use convert_case::{Case, Casing};
 use textwrap::{
     wrap,

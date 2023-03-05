@@ -1,3 +1,5 @@
+//! Contains functions related to styles appliance.
+
 use crossterm::style::{Color, Stylize};
 use crate::error::exit_process;
 pub trait Styles {

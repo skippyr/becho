@@ -1,3 +1,5 @@
+//! Contains functions related to terminal's properties.
+
 use crossterm::terminal::size;
 
 pub fn get_terminal_width() -> usize {
