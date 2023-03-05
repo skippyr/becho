@@ -23,7 +23,7 @@ log_message() {
       ;;
   esac
 
-  becho -l "  $(becho -bf dark_red "*") " -w 80 "$(becho -b [)$(becho -bf ${color} ${status})$(becho -b ]) $(becho -i ${action}) $(becho -b ${text}) ..."
+  becho -l "  $(becho -bf red "*") " -w 80 "$(becho -b [)$(becho -bf ${color} ${status})$(becho -b ]) $(becho -i ${action}) $(becho -b ${text}) ..."
   sleep_randomly
 }
 
@@ -31,8 +31,8 @@ main() {
   local -r system_name="example linux"
   local -r system_version=2.0.5
   local -r system_author="Sherman Rofeman"
-  becho "$(becho -i -f dark_red -c title ${system_name}) $(becho -bf dark_green ${system_version}) by $(becho -f dark_blue ${system_author})."
-  sleep 3
+  becho "$(becho -if red -c title ${system_name}) $(becho -bf green ${system_version}) by $(becho -f blue ${system_author})."
+  sleep 1
 
   local -r messages=(
     "OK initiating operating system"

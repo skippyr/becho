@@ -7,8 +7,8 @@ main() {
     63°C
     71°C
   )
-  becho -bf dark_red "CPU Temperatures"
-  becho "[ $(becho -t " | " ${cpu_temperatures[@]}) ]"
+  becho -bf red "CPU Temperatures"
+  becho "[ $(becho -t " ¦ " ${cpu_temperatures[@]}) ]"
 }
 
 main
