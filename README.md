@@ -34,7 +34,6 @@ scripts.
 ![](images/preview/colors.png)
 ![](images/preview/operating_system_startup.png)
 ![](images/preview/paragraph_wrap.png)
-![](images/preview/name_treater.png)
 ![](images/preview/cpu_temperatures.png)
 
 Those scripts are at `scripts/examples` for you to test after you have
