@@ -8,9 +8,30 @@ use textwrap::{
 use crossterm::style::Stylize;
 use crate::error::exit_process;
 
+/// A trait that contains treatments to be implemented for the `String` type.
 pub trait Treatments {
+    /// Replaces double backslashes (`\\`) of new line (`\n`), tab (`\t`) and
+    /// escape (`\e`, `\x1b` and `\003`) characters that is in a string to only
+    /// one backslash `\`, making those be escaped when the string is printed.
     fn escape_sequences(&self, is_to_escape: bool) -> String;
+    
+    /// Treats the case of a string based on the value of the argument `case`.
+    ///
+    ///
+    /// ### Panics
+    /// 
+    /// It panics and exits the main process if the `case` value is considered
+    /// invalid.
     fn treat_case(&self, case: &str) -> String;
+
+    /// Adds left indentation and wraps a String type based on the value of
+    /// the `width` argument.
+    /// 
+    /// 
+    /// ### Panics
+    /// 
+    /// It panics and exits the main process if it detects that all the text's
+    /// elements can not fit in the `width` value provided.
     fn treat_width_and_sides(
         &self,
         width: usize,

@@ -11,6 +11,7 @@ use std::io::{stdout, Write};
 ///   in the end.
 /// + Else, it will be printed by using the macro `println!`.
 /// 
+/// 
 /// ### Examples
 ///
 /// ```

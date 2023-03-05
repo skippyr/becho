@@ -80,8 +80,11 @@ pre-installed. You can use it to test it.
 
 ## More Information
 
-Please refer to the manual of `becho` after you install it by using
-`becho --help` or `man becho`.
+If you are a user, please refer to the manual of `becho` after you install it by
+using `becho --help` or `man becho`.
+
+If you are a developer, you can use `cargo` to compile the internal
+documentation and open it in your default browser by using `cargo doc --open`.
 
 
 ## See Also
