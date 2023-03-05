@@ -1,5 +1,8 @@
 #[cfg(test)]
-use crate::styles::Styles;
+use crate::{
+    styles::Styles,
+    treatments::Treatments,
+};
 
 #[cfg(test)]
 struct Color {
@@ -210,4 +213,14 @@ fn test_add_end_sequence() {
         String::from("\u{1b}[1mtest\u{1b}[0m"),
         "testing if style end sequences is added.",
     );
+}
+
+#[test]
+fn test_escape_sequences() {
+    let text: String = String::from("test\\n\\t\\x1b[31mhello\\e[0m");
+    assert_eq!(
+        text.escape_sequences(true),
+        String::from("test\n  \x1b[31mhello\x1b[0m"),
+        "testing if characters are escaped.",
+    )
 }
