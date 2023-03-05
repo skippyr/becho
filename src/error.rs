@@ -16,7 +16,7 @@ use std::process::exit;
 /// ```should_panic
 /// use becho::error::exit_process;
 /// 
-/// exit_process("failed to get command line arguments.".to_string(), 1);
+/// exit_process(String::from("failed to get command line arguments."), 1);
 /// ```
 pub fn exit_process(message: String, exit_code: i32) {
   eprintln!("becho: {}", message);

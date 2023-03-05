@@ -18,7 +18,7 @@ use textwrap::core::display_width;
 /// ```
 /// use becho::io::print_to_stdout;
 /// 
-/// print_to_stdout("Here Are Dragons!".to_string(), 2, true);
+/// print_to_stdout(String::from("Here Are Dragons!"), 2, true);
 /// ```
 pub fn print_to_stdout(
     output: String,

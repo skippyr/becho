@@ -6,6 +6,7 @@ pub mod io;
 pub mod treatments;
 pub mod error;
 pub mod terminal;
+pub mod tests;
 
 #[derive(Debug, Parser)]
 #[clap(version)]
