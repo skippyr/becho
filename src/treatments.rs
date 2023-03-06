@@ -57,10 +57,10 @@ impl Treatments for String {
     fn treat_case(&self, case: &str) -> String {
         match case {
             "upper" => {
-                self.clone().to_uppercase()
+                self.clone().to_lowercase().to_case(Case::Upper)
             }
             "lower" => {
-                self.clone().to_lowercase()
+                self.clone().to_lowercase().to_case(Case::Lower)
             }
             "camel" => {
                 self.clone().to_lowercase().to_case(Case::Camel)

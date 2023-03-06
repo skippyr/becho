@@ -224,3 +224,49 @@ fn test_escape_sequences() {
         "testing if characters are escaped.",
     )
 }
+
+#[cfg(test)]
+struct Case {
+    name: String,
+    text: String,
+    text_treated: String,
+}
+
+#[cfg(test)]
+impl Case {
+    fn new(name: &str, text: &str, text_treated: &str) -> Self {
+        let name: String = String::from(name);
+        let text: String = String::from(text);
+        let text_treated: String = String::from(text_treated);
+        Case { name, text, text_treated }
+    }
+}
+
+#[cfg(test)]
+fn get_cases() -> Vec<Case> {
+    let text: &str = "Here are   dRAgONs";
+    vec![
+        Case::new("upper", text, "HERE ARE DRAGONS"),
+        Case::new("lower", text, "here are dragons"),
+        Case::new("camel", text, "hereAreDragons"),
+        Case::new("upper_camel", text, "HereAreDragons"),
+        Case::new("title", text, "Here Are Dragons"),
+        Case::new("snake", text, "here_are_dragons"),
+        Case::new("upper_snake", text, "HERE_ARE_DRAGONS"),
+        Case::new("kebab", text, "here-are-dragons"),
+        Case::new("upper_kebab", text, "HERE-ARE-DRAGONS"),
+        Case::new("alternate", text, "hErE aRe DrAgOnS"),
+    ]
+}
+
+#[test]
+fn test_treat_case() {
+    let cases: Vec<Case> = get_cases();
+    for case in cases {
+        assert_eq!(
+            case.text.treat_case(&case.name),
+            case.text_treated,
+            "testing if case is treated.",
+        )
+    }
+}
